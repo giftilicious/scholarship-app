@@ -8,6 +8,11 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  usertype: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
@@ -19,10 +24,16 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
+  definedScholarships: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Thought',
+      ref: 'Scholarship',
+    },
+  ],
+  pickedScholarships: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Scholarship',
     },
   ],
 });
