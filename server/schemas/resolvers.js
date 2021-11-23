@@ -1,27 +1,26 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Thought, Scholarship } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('definedScholarships');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('definedScholarships');
     },
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    allScholarships: async () => {
+      return Scholarship.find().sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    scholarship: async (parent, { scholarshipId }) => {
+      return Scholarship.findOne({ _id: scholarshipId });
     },
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { username, usertype, email, password }) => {
+      const user = await User.create({ username, usertype, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -42,37 +41,44 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      const thought = await Thought.create({ thoughtText, thoughtAuthor });
+    addScholarship: async (parent, { username, title, type, description, value, deadline, ethnicity, disability, levelofstudy, gender, applink, appemail}) => {
+      console.log(username)
+      console.log(title)
+      console.log(gender);
+      console.log(disability)
+      const scholarship = await Scholarship.create({ title, type, description, value,deadline, ethnicity, disability, levelofstudy, gender, applink, appemail });
 
       await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        { $addToSet: { thoughts: thought._id } }
+        { username: username },
+        { $addToSet: { definedScholarships: scholarship._id } }
       );
 
-      return thought;
+      return scholarship;
     },
-    addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText, commentAuthor } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
+    deleteScholarship: async (parent, { username, scholarshipId }) => {
+      console.log(scholarshipId);
+      await User.findOneAndUpdate(
+        { username: username },
+        { $pull: { definedScholarships: scholarshipId } }
       );
+      return Scholarship.findOneAndDelete({ _id: scholarshipId });
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
+    pickScholarship: async (parent, { username, scholarshipId}) => {
+  
+      await User.findOneAndUpdate(
+        { username: username },
+        { $addToSet: { pickedScholarships: scholarshipId } }
       );
+
+      return User.findOne({ username }).populate('pickedScholarships');
+    },
+    dropScholarship: async (parent, { username, scholarshipId }) => {
+      console.log(scholarshipId);
+      await User.findOneAndUpdate(
+        { username: username },
+        { $pull: { pickedScholarships: scholarshipId } }
+      );
+      return User.findOne({ username }).populate('pickedScholarships');
     },
   },
 };

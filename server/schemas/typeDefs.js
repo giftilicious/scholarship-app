@@ -4,23 +4,26 @@ const typeDefs = gql`
   type User {
     _id: ID
     username: String
+    usertype: String
     email: String
     password: String
-    thoughts: [Thought]!
+    definedScholarships: [Scholarship]!
+    pickedScholarships: [Scholarship]!
   }
 
-  type Thought {
+  type Scholarship {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
+    title: String
+    type: String
+    description: String
+    value: Int
+    deadline: String
+    ethnicity: [String]
+    disability: [String]
+    levelofstudy: [String]
+    gender: [String]
+    applink: String
+    appemail: String
     createdAt: String
   }
 
@@ -32,21 +35,17 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    allScholarships: [Scholarship]
+    scholarship(scholarshipId: ID!): Scholarship
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, usertype: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!, thoughtAuthor: String!): Thought
-    addComment(
-      thoughtId: ID!
-      commentText: String!
-      commentAuthor: String!
-    ): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addScholarship(username: String!, title: String!, type: String!, description: String, value: Int!, deadline: String!, ethnicity:[String!],disability: [String!],levelofstudy: [String!], gender: [String!], applink: String, appemail: String): Scholarship
+    deleteScholarship(username:String!,scholarshipId:ID!): Scholarship
+    pickScholarship(username:String!,scholarshipId:ID!): User
+    dropScholarship(username:String!,scholarshipId:ID!): User
   }
 `;
 
