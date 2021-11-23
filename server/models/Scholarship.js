@@ -39,10 +39,6 @@ const scholarshipSchema = new Schema({
   gender: {
     type: [String],
   },
-  active: {
-    type: Boolean,
-    default: true,
-  },
   applink: {
     type: String,
     trim: true,
