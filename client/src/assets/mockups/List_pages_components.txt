@@ -1,0 +1,30 @@
+
+PAGES
+
+	General:
+
+		<Home/>
+		<Signup/>
+		<Login/>
+
+	Provider:
+
+		<ScholarshipForm/>
+		<Library/> 
+
+	Student:
+
+		<Collection/>	
+		<Search/>
+		<Apply/> ?
+
+
+COMPONENTS
+
+	<Header/>
+	<Brand/>
+	<Navbar/>
+   	<Filters/> 
+	<ScholarshipsList/>
+	<OneScholarship/>
+	<Footer/> 
