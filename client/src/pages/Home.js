@@ -1,8 +1,24 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+
+import QUERY_ALL_SCHOLARSHIPS from '../utils/queries'
+
+
 
 const Home = () => {
   const loading=false;
+
+  const {loading, data} = useQuery(QUERY_ALL_SCHOLARSHIPS)
+  const allScholarships = data?.allScholarships;
+
+  if(!allScholarships){
+    return (
+      <div>
+        <h1>Loading ...</h1>
+      </div>
+    )
+  }
   return (
     <main>
       <div className="flex-row justify-center">
@@ -11,8 +27,12 @@ const Home = () => {
           style={{ border: '1px dotted #1a1a1a' }}
         >
           <div>
-              TODO
-              </div>
+             {allScholarships.map((scholarship) => (
+               <div>                 
+                 {/* CARD */}
+               </div>
+             ))}
+          </div>
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
