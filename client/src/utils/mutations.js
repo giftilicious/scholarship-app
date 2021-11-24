@@ -62,3 +62,47 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_SCHOLARSHIP = gql`
+mutation addScholarship(
+  $username: String!
+  $title: String!
+  $type: String!
+  $description: String
+  $value: Int!
+  $deadline: String!
+  $ethnicity: [String!]
+  $disability: [String!]
+  $levelofstudy: [String!]
+  $gender: [String!]
+  $applink: String
+  $appemail: String
+) {
+  addScholarship(
+    username: $username
+    title: $title
+    type: $type
+    description: $description
+    value: $value
+    deadline: $deadline
+    ethnicity: $ethnicity
+    disability: $disability
+    levelofstudy: $levelofstudy
+    gender: $gender
+    applink: $applink
+    appemail: $appemail
+  ) {
+    title
+    type
+    description
+    value
+    ethnicity
+    disability
+    levelofstudy
+    gender
+    applink
+    appemail
+  }
+}
+`;
+
