@@ -15,6 +15,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProvideScholarship from './pages/ProvideScholarship';
 
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,6 +59,25 @@ function App() {
             <Route exact path="/provideScholarship">
               <ProvideScholarship />
             </Route>
+            {/* TODO Library page to be added */}
+            {/* <Route exact path="/library">
+              < />
+            </Route> */}
+            {/* TODO Collection page to be added */}
+            {/* <Route exact path="/collection">
+              < />
+            </Route> */}
+            {/* TODO search page to be added */}
+            {/* <Route exact path="/search">
+              < />
+            </Route> */}
+            {/* TODO apply page to be added */}
+            {/* <Route exact path="/apply">
+              < />
+            </Route> */}
+            {/* <Route exact path="/thoughts/:thoughtId">
+              <SingleThought />
+            </Route> */}
           </div>
           <Footer />
         </div>
