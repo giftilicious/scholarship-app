@@ -13,51 +13,12 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($username: String!, $usertype: String!, $email: String!, $password: String!) {
+    addUser(username: $username, usertype: $usertype, email: $email, password: $password) {
       token
       user {
         _id
         username
-      }
-    }
-  }
-`;
-
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!, $thoughtAuthor: String!) {
-    addThought(thoughtText: $thoughtText, thoughtAuthor: $thoughtAuthor) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
-  }
-`;
-
-export const ADD_COMMENT = gql`
-  mutation addComment(
-    $thoughtId: ID!
-    $commentText: String!
-    $commentAuthor: String!
-  ) {
-    addComment(
-      thoughtId: $thoughtId
-      commentText: $commentText
-      commentAuthor: $commentAuthor
-    ) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
       }
     }
   }
@@ -69,8 +30,8 @@ mutation addScholarship(
   $title: String!
   $type: String!
   $description: String
-  $value: Int!
   $deadline: String!
+  $amount: Int!
   $ethnicity: [String!]
   $disability: [String!]
   $levelofstudy: [String!]
@@ -83,8 +44,8 @@ mutation addScholarship(
     title: $title
     type: $type
     description: $description
-    value: $value
     deadline: $deadline
+    amount: $amount
     ethnicity: $ethnicity
     disability: $disability
     levelofstudy: $levelofstudy
@@ -94,15 +55,12 @@ mutation addScholarship(
   ) {
     title
     type
-    description
-    value
-    ethnicity
-    disability
-    levelofstudy
-    gender
-    applink
-    appemail
+
   }
 }
 `;
+
+
+
+
 
