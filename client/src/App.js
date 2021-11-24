@@ -57,25 +57,25 @@ function App() {
               <Signup />
             </Route>
             {/* TODO Library page to be added */}
-            <Route exact path="/library">
+            {/* <Route exact path="/library">
               < />
-            </Route>
+            </Route> */}
             {/* TODO scholarshipForm page to be added */}
-            <Route exact path="/scholarship">
+            {/* <Route exact path="/scholarship">
               < />
-            </Route>
+            </Route> */}
             {/* TODO Collection page to be added */}
-            <Route exact path="/collection">
+            {/* <Route exact path="/collection">
               < />
-            </Route>
+            </Route> */}
             {/* TODO search page to be added */}
-            <Route exact path="/search">
+            {/* <Route exact path="/search">
               < />
-            </Route>
+            </Route> */}
             {/* TODO apply page to be added */}
-            <Route exact path="/apply">
+            {/* <Route exact path="/apply">
               < />
-            </Route>
+            </Route> */}
             {/* <Route exact path="/thoughts/:thoughtId">
               <SingleThought />
             </Route> */}
