@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 
 import QUERY_ALL_SCHOLARSHIPS from '../utils/queries'
+import Auth from '../utils/auth';
+import Filters from '../components/Filters';
 
 
 
@@ -26,13 +28,26 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
+          {Auth.loggedIn ? (
+            <div>
+              <Filters/>
+              <div>
+              
+            </div>
+            </div>          
+
+          ): (
           <div>
+
              {allScholarships.map((scholarship) => (
                <div>                 
                  {/* CARD */}
                </div>
+
              ))}
           </div>
+          )}
+          
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
