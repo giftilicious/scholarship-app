@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought, Scholarship } = require('../models');
+const { User, Scholarship } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -41,12 +41,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addScholarship: async (parent, { username, title, type, description, value, deadline, ethnicity, disability, levelofstudy, gender, applink, appemail}) => {
+    addScholarship: async (parent, { username, title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail}) => {
       console.log(username)
       console.log(title)
-      console.log(gender);
-      console.log(disability)
-      const scholarship = await Scholarship.create({ title, type, description, value,deadline, ethnicity, disability, levelofstudy, gender, applink, appemail });
+   
+      const scholarship = await Scholarship.create({ title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail});
 
       await User.findOneAndUpdate(
         { username: username },

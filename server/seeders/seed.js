@@ -4,7 +4,6 @@ const userSeeds = require('./userSeeds.json');
 
 db.once('open', async () => {
   try {
-    await Thought.deleteMany({});
     await User.deleteMany({});
 
     await User.create(userSeeds);
