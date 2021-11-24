@@ -1,41 +1,32 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
-function Navbar() {
-const demographics = ["","","","",""];
-const levels = ["","","","",""];
-const types = ["","","","",""];
-const deadlines = [];
-const values = [];
+const Navbar = () => {
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+      };
 
     return (
-        <div>            
-            <form action="">
-                <select className="filters" name="demographics" id="demographics">
-                    {demographics.map((demography) => (
-                        <option value={demography}>{demography}</option>
-                    ))}                   
-                </select>
-                <select className="filters" name="levels-of-study" id="levels">
-                    {levels.map((level) => (
-                        <option value={level}>{level}</option>
-                    ))}                   
-                </select>
-                <select className="filters" name="types" id="types">
-                    {types.map((type) => (
-                        <option value={type}>{type}</option>
-                    ))}                   
-                </select>
-                <select className="filters" name="deadlines" id="deadlines">
-                    {deadlines.map((deadline) => (
-                        <option value={deadline}>{deadline}</option>
-                    ))}                   
-                </select>
-                <select className="filters" name="values" id="values">
-                    {values.map((value) => (
-                        <option value={value}>{value} $</option>
-                    ))}                   
-                </select>
-            </form>
+        <div>
+            {Auth.loggedIn() ? (
+            <>
+              <span>Hey there, {Auth.getProfile().data.username}!</span>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/login">
+                Login
+              </Link>
+              <Link className="btn btn-lg btn-light m-2" to="/signup">
+                Signup
+              </Link>
+            </>
+          )}
         </div>
     )
 }
