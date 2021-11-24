@@ -42,10 +42,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, usertype: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addScholarship(username: String!, title: String!, type: String!, description: String, value: Int!, deadline: String!, ethnicity:[String!],disability: [String!],levelofstudy: [String!], gender: [String!], applink: String, appemail: String): Scholarship
     deleteScholarship(username:String!,scholarshipId:ID!): Scholarship
     pickScholarship(username:String!,scholarshipId:ID!): User
     dropScholarship(username:String!,scholarshipId:ID!): User
+    addScholarship(username:String!,title: String!, type: String!, description: String, deadline: String!, amount: Int!, ethnicity:[String!], disability: [String!],levelofstudy: [String!], gender: [String!], applink: String, appemail: String): Scholarship
   }
 `;
 
