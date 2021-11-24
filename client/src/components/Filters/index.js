@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Filters() {
-const ethnicities = ["Black","Indigineous","Asian","Hispanic"];
+const ethnicities = ["Black","Indigeneous","Asian","Hispanic"];
 const disabilities = ["Physical","Intellectual","Learning"];
 const levels = ["Graduate","High School","Post-Secondary","Post-Graduate"];
 const types = ["Award","Bursary","Essay","Fund","Scholarship"];
