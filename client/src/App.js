@@ -11,9 +11,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import SingleThought from './pages/SingleThought';
+// import SingleThought from './pages/SingleThought';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -55,9 +56,29 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            <Route exact path="/thoughts/:thoughtId">
-              <SingleThought />
+            {/* TODO Library page to be added */}
+            <Route exact path="/library">
+              < />
             </Route>
+            {/* TODO scholarshipForm page to be added */}
+            <Route exact path="/scholarship">
+              < />
+            </Route>
+            {/* TODO Collection page to be added */}
+            <Route exact path="/collection">
+              < />
+            </Route>
+            {/* TODO search page to be added */}
+            <Route exact path="/search">
+              < />
+            </Route>
+            {/* TODO apply page to be added */}
+            <Route exact path="/apply">
+              < />
+            </Route>
+            {/* <Route exact path="/thoughts/:thoughtId">
+              <SingleThought />
+            </Route> */}
           </div>
           <Footer />
         </div>
