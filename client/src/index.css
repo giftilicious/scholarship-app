@@ -1030,21 +1030,21 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: #1bbc9b;
+  background-color: #07b390;
   color: #ffffff;
 }
 
 .btn.btn-info:hover {
-  background-color: #31e1bd;
+  background-color: #01a786;
 }
 
 .btn.btn-light {
-  background-color: #d9e9e8;
+  background-color: #b8cfdb;
   color: #1a1a1a;
 }
 
 .btn.btn-light:hover {
-  background-color: #84b8b4;
+  background-color: #95a8b3;
 }
 
 .btn.btn-dark {
