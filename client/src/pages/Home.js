@@ -1,6 +1,12 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
+import ThoughtList from '../components/ScholarshipList';
+import ThoughtForm from '../components/ThoughtForm';
+
+import { QUERY_THOUGHTS } from '../utils/queries';
+
+
 const Home = () => {
   const loading=false;
   return (

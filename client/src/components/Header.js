@@ -1,6 +1,6 @@
 import React from 'react';
-import Brand from '../Brand/index'
-import Navbar from '../Navbar';
+import Brand from './Brand'
+import Navbar from './Navbar';
 
 
 const Header = () => {
