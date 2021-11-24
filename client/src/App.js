@@ -6,15 +6,20 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import './App.css';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Header from './components/Header';
+import Library from './pages/Library';
+import Collection from './pages/Collection';
+import Filters from './components/Filters';
 import Footer from './components/Footer';
-import ProvideScholarship from './pages/ProvideScholarship';
-
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import ScholarshipCard from './components/ScholarshipCard';
+import ScholarshipForm from './components/ScholarshipForm';
+ 
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -56,28 +61,17 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            <Route exact path="/provideScholarship">
-              <ProvideScholarship />
+            {/* Because we have the context functionality in place to check a JWT and decode its data, 
+            we can use a query that will always find and return the logged in user's data; we need to add a 'me: User' in the typeDefs query */}
+            <Route exact path="/me">
+              <User />
             </Route>
-            {/* TODO Library page to be added */}
-            {/* <Route exact path="/library">
-              < />
-            </Route> */}
-            {/* TODO Collection page to be added */}
-            {/* <Route exact path="/collection">
-              < />
-            </Route> */}
-            {/* TODO search page to be added */}
-            {/* <Route exact path="/search">
-              < />
-            </Route> */}
-            {/* TODO apply page to be added */}
-            {/* <Route exact path="/apply">
-              < />
-            </Route> */}
-            {/* <Route exact path="/thoughts/:thoughtId">
-              <SingleThought />
-            </Route> */}
+            <Route exact path="/collection/:userId">
+              <Collection />
+            </Route>
+            <Route exact path="/library/:userId">
+              <Library />
+            </Route>                    
           </div>
           <Footer />
         </div>
@@ -85,5 +79,6 @@ function App() {
     </ApolloProvider>
   );
 }
+
 
 export default App;
