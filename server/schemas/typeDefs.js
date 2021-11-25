@@ -16,7 +16,7 @@ const typeDefs = gql`
     title: String
     type: String
     description: String
-    value: Int
+    amount: Int
     deadline: String
     ethnicity: [String]
     disability: [String]
