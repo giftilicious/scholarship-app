@@ -82,4 +82,4 @@ const handleSelect = (e) =>{
     )
 }
 
-export default Filters
+export default Filters;

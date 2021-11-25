@@ -77,4 +77,4 @@ const [type, setType ] = useState('Type of funding');
     )
 }
 
-export default Search
+export default Search;

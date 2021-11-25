@@ -1,15 +1,4 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { useState } from 'react';
-
-import QUERY_ALL_SCHOLARSHIPS from '../utils/queries'
-import SearchResults from '../pages/SearchResults'
-import ScholarshipCard from '../components/ScholarshipCard'
-import Auth from '../utils/auth';
-
-
-
-
 
 const Home = () => {
   
