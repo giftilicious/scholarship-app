@@ -52,4 +52,4 @@ const values = ["1000", "2000","3000","4000", "5000", "8000","10000", "12000", "
     )
 }
 
-export default Filters
+export default Filters;
