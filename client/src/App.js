@@ -7,18 +7,14 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import './App.css';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Library from './pages/Library';
 import Collection from './pages/Collection';
-import Filters from './components/Filters';
+import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Navbar from './components/Navbar';
-import ScholarshipCard from './components/ScholarshipCard';
-import ScholarshipForm from './components/ScholarshipForm';
  
 
 // Construct our main GraphQL API endpoint
@@ -61,15 +57,13 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            {/* Because we have the context functionality in place to check a JWT and decode its data, 
-            we can use a query that will always find and return the logged in user's data; we need to add a 'me: User' in the typeDefs query */}
-            <Route exact path="/me">
-              <User />
+            <Route exact path="/provideScholarship">
+              <ProvideScholarship />
             </Route>
-            <Route exact path="/collection/:userId">
+            <Route exact path="/collection/:username">
               <Collection />
             </Route>
-            <Route exact path="/library/:userId">
+            <Route exact path="/library/:username">
               <Library />
             </Route>                    
           </div>
