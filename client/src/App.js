@@ -60,10 +60,10 @@ function App() {
             <Route exact path="/provideScholarship">
               <ProvideScholarship />
             </Route>
-            <Route exact path="/collection/:userId">
+            <Route exact path="/collection/:username">
               <Collection />
             </Route>
-            <Route exact path="/library/:userId">
+            <Route exact path="/library/:username">
               <Library />
             </Route>                    
           </div>
