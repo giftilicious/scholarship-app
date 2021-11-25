@@ -3,24 +3,20 @@ import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 
 import QUERY_ALL_SCHOLARSHIPS from '../utils/queries'
+import SearchResults from '../pages/SearchResults'
+import ScholarshipCard from '../components/ScholarshipCard'
 import Auth from '../utils/auth';
-import Filters from '../components/Filters';
 
 
 
-import ThoughtList from '../components/ScholarshipList';
-import ThoughtForm from '../components/ThoughtForm';
-
-import { QUERY_THOUGHTS } from '../utils/queries';
 
 
 const Home = () => {
-  const loading=false;
-
+  
   const {loading, data} = useQuery(QUERY_ALL_SCHOLARSHIPS)
   const allScholarships = data?.allScholarships;
 
-  if(!allScholarships){
+  if(!allScholarships || loading){
     return (
       <div>
         <h1>Loading ...</h1>
@@ -36,35 +32,19 @@ const Home = () => {
         >
           {Auth.loggedIn ? (
             <div>
-              <Filters/>
-              <div>
-              
+              <SearchResults/>         
             </div>
-            </div>          
-
-          ): (
-          <div>
-
-             {allScholarships.map((scholarship) => (
-               <div>                 
-                 {/* CARD */}
-               </div>
-
-             ))}
-          </div>
+          ) : (
+              <div>
+                {allScholarships.map((scholarship) => (
+                  <ScholarshipCard
+                  scholarship = {scholarship}
+                  />
+                ))}
+              </div>
           )}
           
-        </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <div>
-              TODO
-              </div>
-           
-          )}
-        </div>
+        </div>        
       </div>
     </main>
   );

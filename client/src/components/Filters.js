@@ -2,15 +2,17 @@ import React from 'react'
 import { useState } from 'react';
 
 function Filters() {
-const ethnicities = ["Black","Indigeneous","Asian","Hispanic", "Any"];
-const disabilities = ["Physical","Intellectual","Learning", "None"];
-const levels = ["Graduate","High School","Post-Secondary","Post-Graduate"];
-const types = ["Award","Bursary","Essay","Fund","Scholarship"];
+const ethnicities = ["Black","Indigeneous","Asian"];
+const disabilities = ["Physical","Intellectual","Learning Difference"];
+const genders = ["Female", "Male", "Gender Diverse"];
+const levels = ["High School","Post-Secondary"];
+const types = ["Bursary", "Scholarship"];
 
-const [ethnicity, setEthnicity ] = useState('Any');
-const [disability, setDisability ] = useState('None');
-const [level, setLevel ] = useState('Post-Secondary');
-const [type, setType ] = useState('Scholarship');
+const [ethnicity, setEthnicity ] = useState('Ethnicity');
+const [disability, setDisability ] = useState('Disability');
+const [gender, setGender ] = useState('Gender');
+const [level, setLevel ] = useState('Level of study');
+const [type, setType ] = useState('Type of funding');
 
 
 const handleSelect = (e) =>{
@@ -20,6 +22,8 @@ const handleSelect = (e) =>{
             setEthnicity(selected);
         case "disabilities":
             setDisability(selected);
+        case "genders":
+            setGender(selected);
         case "levels-of-study":
             setLevel(selected);
         case "types":
@@ -41,6 +45,12 @@ const handleSelect = (e) =>{
                 <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
                     {disabilities.map((disability) => (
                         <option value={disability}>{disability}</option>
+                    ))}                   
+                </select>
+                 {/* genders */}
+                 <select className="filters" name="genders" id="genders" onChange={handleSelect}>
+                    {genders.map((gender) => (
+                        <option value={gender}>{gender}</option>
                     ))}                   
                 </select>
                 {/* levels of study */}
