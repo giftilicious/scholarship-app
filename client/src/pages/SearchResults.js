@@ -4,12 +4,14 @@ import { useState } from 'react';
 function Search() {
     const ethnicities = ["Black","Indigeneous","Asian"];
 const disabilities = ["Physical","Intellectual","Learning Difference"];
-const gender = ["Female", "Male", "Gender Diverse"];
+const genders = ["Female", "Male", "Gender Diverse"];
 const levels = ["High School","Post-Secondary"];
 const types = ["Bursary", "Scholarship"];
 
+
 const [ethnicity, setEthnicity ] = useState('Ethnicity');
 const [disability, setDisability ] = useState('Disability');
+const [gender, setGender ] = useState('Gender');
 const [level, setLevel ] = useState('Level of study');
 const [type, setType ] = useState('Type of funding');
 
@@ -20,6 +22,8 @@ const [type, setType ] = useState('Type of funding');
                 setEthnicity(selected);
             case "disabilities":
                 setDisability(selected);
+            case "genders":
+                setGender(selected);
             case "levels-of-study":
                 setLevel(selected);
             case "types":
