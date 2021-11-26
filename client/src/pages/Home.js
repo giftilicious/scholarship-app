@@ -1,4 +1,9 @@
 import React from 'react';
+import {useQuery} from '@apollo/client';
+import SearchResults from '../components/SearchResults/index';
+import ScholarshipCard from '../components/ScholarshipCard/index';
+import Auth from '../utils/auth';
+
 
 const Home = () => {
   

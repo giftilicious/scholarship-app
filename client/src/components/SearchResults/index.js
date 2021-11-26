@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 function Search() {
-    const ethnicities = ["Black","Indigeneous","Asian"];
+const ethnicities = ["Black","Indigeneous","Asian"];
 const disabilities = ["Physical","Intellectual","Learning Difference"];
 const genders = ["Female", "Male", "Gender Diverse"];
 const levels = ["High School","Post-Secondary"];
@@ -59,19 +59,7 @@ const [type, setType ] = useState('Type of funding');
                 {types.map((type) => (
                     <option value={type}>{type}</option>
                 ))}                   
-            </select>
-            {/* application deadlines */}
-            <select className="filters" name="deadlines" id="deadlines">
-                {deadlines.map((deadline) => (
-                    <option value={deadline}>{deadline}</option>
-                ))}                   
-            </select>
-            {/* funding values or amounts */}
-            <select className="filters" name="values" id="values">
-                {values.map((value) => (
-                    <option value={value}>{value} &#36;</option>
-                ))}                   
-            </select>
+            </select>            
         </form>
     </div>
     )
