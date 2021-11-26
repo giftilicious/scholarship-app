@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import { useParams, Link } from 'react-router-dom';
 import { QUERY_USER } from '../utils/queries';
 import { DROP_SCHOLARSHIP } from '../utils/mutations'
 import Auth from '../utils/auth';
@@ -25,7 +26,7 @@ const Collection = ({ pickedScholarships, isLoggedInUser = false }) => {
         variables: {scholarshipId}
       })
 
-      dropcholarshipId(scholarshipId);
+      dropScholarshipId(scholarshipId);
     } catch (err) {
       console.error(err);
     }
