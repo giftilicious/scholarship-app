@@ -1,22 +1,19 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { useParams, Link } from 'react-router-dom';
-import { QUERY_USER } from '../utils/queries';
+// import { useParams, Link } from 'react-router-dom';
+import { QUERY_ME } from '../utils/queries';
 import { DROP_SCHOLARSHIP } from '../utils/mutations'
 import Auth from '../utils/auth';
 
-const Collection = ({ pickedScholarships, isLoggedInUser = false }) => {
-  const { username } = useParams();
-  const { loading, data } = useQuery(QUERY_USER,
-    {
-      variables: { username: username },
-    }
-  );
+const Collection = () => {
+    const {loading, data} = useQuery(QUERY_ME)
+  // 'collection' will pass through the return statement below when authenticating user
+  const collection = data?.me || {}
   const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
 
+// This function will handle the click event to delete the scholarship from the collection
   const handleDropScholarship = async (scholarshipId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+  
     if (!token) {
       return false;
     }
@@ -32,46 +29,62 @@ const Collection = ({ pickedScholarships, isLoggedInUser = false }) => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user?.name) {
-    return (
-      <h4>
+  return (
+    <div>
+      {/* Conditional (ternary) operator is checking to see if loggedIn is true. If so render the following: */}
+      {Auth.loggedIn ? (
+        <div>
+         {/* Define elements that will render on screen if condition for user loggedin is true */}
+        </div>
+      ) : (
+        // If we are logged out, render this:
+        <div>
+          {/* Define elements that will render on the screen if user is not logged in */}
+          <h4>
         You need to be logged in to see your saved award list. Use the navigation
         links above to sign up or log in!
       </h4>
-    );
-  }
-
-  return (
-    <div>
-      <div className="flex-row justify-space-between my-4">
-        {pickedScholarships &&
-          pickedScholarships.map((pickedScholarship) => (
-            <div key={skill} className="col-12 col-xl-6">
-              <div className="card mb-3">
-                <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
-                  <span>{pickedScholarship}</span>
-                  {isLoggedInUser && (
-                    <button
-                      className="btn btn-sm btn-danger ml-auto"
-                      onClick={() => handleDropScholarship(pickedScholarship)}
-                    >
-                      X
-                    </button>
-                  )}
-                </h4>
-              </div>
-            </div>
-          ))}
-      </div>
-      {error && (
-        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+        </div>
       )}
     </div>
   );
 };
 
+
 export default Collection;
+
+
+//////////////
+  // return (
+  //   <>
+  //     <Jumbotron fluid className='text-light bg-dark'>
+  //       <Container>
+  //         <h1>Viewing saved books!</h1>
+  //       </Container>
+  //     </Jumbotron>
+  //     <Container>
+  //       <h2>
+  //         {collection.pickedScholarships.length
+  //           ? `Viewing ${collection.pickedScholarships.length} saved ${collection.pickedScholarships.length === 1 ? 'award' : 'awards'}:`
+  //           : 'You have no saved awards.'}
+  //       </h2>
+  //       <CardColumns>
+  //         {collection.pickedScholarships.map((scholarship) => {
+  //           return (
+  //             <Card key={scholarship.scholarshipId} border='dark'>
+  //               {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
+  //               <Card.Body>
+  //                 <Card.Title>{scholarship.title}</Card.Title>
+  //                 <p className='small'>Authors: {book.authors}</p>
+  //                 <Card.Text>{scholarship.description}</Card.Text>
+  //                 <Button className='btn-block btn-danger' onClick={() => handleDropScholarship(scholarship.scholarshipId)}>
+  //                   Delete this Award!
+  //                 </Button>
+  //               </Card.Body>
+  //             </Card>
+  //           );
+  //         })}
+  //       </CardColumns>
+  //     </Container>
+  //   </>
+  // );
