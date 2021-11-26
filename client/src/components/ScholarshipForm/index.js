@@ -129,7 +129,7 @@ const ScholarshipForm = () => {
 
 
     try {
-
+      
       const varObj = {
         username: Auth.getProfile().data.username, title: title, type: type, description: description, deadline: deadline, amount: amount, ethnicity: ethnicity, disability: disability,
         levelofstudy: levelofstudy,
@@ -143,6 +143,7 @@ const ScholarshipForm = () => {
       });
 
       setTitle('');
+      window.location.assign('/');
     } catch (err) {
       console.log("Cannot insert scholarship")
       console.error(err);
