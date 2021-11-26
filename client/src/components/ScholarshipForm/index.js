@@ -8,7 +8,7 @@ import { ethnicityOptions, genderOptions, disabilityOptions, levelofstudyOptions
 import { Dropdown, Option } from "./Dropdown";
 
 
-import { ADD_SCHOLARSHIP } from '../../utils/mutations';
+import { ADD_SCHOLARSHIP, DELETE_SCHOLARSHIPS } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
