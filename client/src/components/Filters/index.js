@@ -1,36 +1,66 @@
 import React from 'react'
+import { useState } from 'react';
 
 function Filters() {
-const ethnicities = ["Black","Indigineous","Asian","Hispanic"];
-const disabilities = ["Physical","Intellectual","Learning"];
-const levels = ["Graduate","High School","Post-Secondary","Post-Graduate"];
-const types = ["Award","Bursary","Essay","Fund","Scholarship"];
-const deadlines = ["15 January", "1 February", "1 March", "1 June", "1 August"];
-const values = ["1000", "2000","3000","4000", "5000", "8000","10000", "12000", "15000"];
+const ethnicities = ["Black","Indigeneous","Asian"];
+const disabilities = ["Physical","Intellectual","Learning Difference"];
+const genders = ["Female", "Male", "Gender Diverse"];
+const levels = ["High School","Post-Secondary"];
+const types = ["Bursary", "Scholarship"];
+
+const [ethnicity, setEthnicity ] = useState('Ethnicity');
+const [disability, setDisability ] = useState('Disability');
+const [gender, setGender ] = useState('Gender');
+const [level, setLevel ] = useState('Level of study');
+const [type, setType ] = useState('Type of funding');
+
+
+const handleSelect = (e) =>{
+    const selected = e.target.value;
+    switch (e.target.name){
+        case "ethnicities": 
+            setEthnicity(selected);
+        case "disabilities":
+            setDisability(selected);
+        case "genders":
+            setGender(selected);
+        case "levels-of-study":
+            setLevel(selected);
+        case "types":
+            setType(selected);
+    }  
+
+}
 
     return (
         <div>            
             <form action="">
                 {/* ethnicities */}
-                <select className="filters" name="ethnicities" id="ethnicities">
+                <select className="filters" name="ethnicities" id="ethnicities" onChange={handleSelect} >
                     {ethnicities.map((ethnicity) => (
                         <option value={ethnicity}>{ethnicity}</option>
                     ))}                   
                 </select>
                 {/* disabilities */}
-                <select className="filters" name="disabilities" id="disabilities">
+                <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
                     {disabilities.map((disability) => (
                         <option value={disability}>{disability}</option>
                     ))}                   
                 </select>
+                 {/* genders */}
+                 <select className="filters" name="genders" id="genders" onChange={handleSelect}>
+                    {genders.map((gender) => (
+                        <option value={gender}>{gender}</option>
+                    ))}                   
+                </select>
                 {/* levels of study */}
-                <select className="filters" name="levels-of-study" id="levels">
+                <select className="filters" name="levels-of-study" id="levels" onChange={handleSelect}>
                     {levels.map((level) => (
                         <option value={level}>{level}</option>
                     ))}                   
                 </select>
                 {/* types of funding */}
-                <select className="filters" name="types" id="types">
+                <select className="filters" name="types" id="types" onChange={handleSelect}>
                     {types.map((type) => (
                         <option value={type}>{type}</option>
                     ))}                   
