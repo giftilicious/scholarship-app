@@ -1,9 +1,7 @@
 export const ethnicityOptions = [
-    { value: "African American", label: "African American" },
+    { value: "Black", label: "Black" },
     { value: "Indigenous", label: "Indigenous" },
-    { value: "Asian", label: "Asian"},
-    { value: "Hispanic", label: "Hispanic" },
-    { value: "Caucasian", label: "Caucasian" }
+    { value: "Asian", label: "Asian"}
   ];
 
 export const genderOptions = [
@@ -15,13 +13,10 @@ export const genderOptions = [
 export const disabilityOptions = [
     { value: "Physical", label: "Physical" },
     { value: "Intellectual", label: "Intellectual" },
-    { value: "Visual", label: "Visual" },
-    { value: "Hearing", label: "Hearing" },
-    { value: "Psychiatric", label: "Psychiatric"}
+    { value: "Learning Difference", label: "Learning Difference" }
   ];
 
 export const levelofstudyOptions = [
-    { value: "Postgrad", label: "Postgrad" },
-    { value: "Undergrad", label: "Undergrad" },
-    { value: "High school", label: "High school" }
+    { value: "Post-Secondary", label: "Post-Secondary" },
+    { value: "High School", label: "High School" }
   ];
