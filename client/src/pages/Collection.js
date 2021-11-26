@@ -1,37 +1,42 @@
 import React from 'react';
-
-import { Redirect, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
-
+import { useQuery, useMutation } from '@apollo/client';
+import { useParams, Link } from 'react-router-dom';
 import { QUERY_USER } from '../utils/queries';
-
+import { DROP_SCHOLARSHIP } from '../utils/mutations'
 import Auth from '../utils/auth';
 
-const Collection = () => {
+const Collection = ({ pickedScholarships, isLoggedInUser = false }) => {
   const { username } = useParams();
-
-  // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
-  const { loading, data } = useQuery(
-    QUERY_USER,
+  const { loading, data } = useQuery(QUERY_USER,
     {
       variables: { username: username },
     }
   );
+  const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
 
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
-  const profile = data?.me || data?.profile || {};
+  const handleDropScholarship = async (scholarshipId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-  // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-  //   return <Redirect to="/" />;
-  // }
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const {data} = await dropScholarship({
+        variables: {scholarshipId}
+      })
+
+      dropScholarshipId(scholarshipId);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!profile?.name) {
+  if (!user?.name) {
     return (
       <h4>
         You need to be logged in to see your saved award list. Use the navigation
@@ -42,16 +47,31 @@ const Collection = () => {
 
   return (
     <div>
-      <h2 className="card-header">
-        Here
-      </h2>
-
-
-
+      <div className="flex-row justify-space-between my-4">
+        {pickedScholarships &&
+          pickedScholarships.map((pickedScholarship) => (
+            <div key={skill} className="col-12 col-xl-6">
+              <div className="card mb-3">
+                <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
+                  <span>{pickedScholarship}</span>
+                  {isLoggedInUser && (
+                    <button
+                      className="btn btn-sm btn-danger ml-auto"
+                      onClick={() => handleDropScholarship(pickedScholarship)}
+                    >
+                      X
+                    </button>
+                  )}
+                </h4>
+              </div>
+            </div>
+          ))}
+      </div>
+      {error && (
+        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+      )}
     </div>
   );
 };
 
 export default Collection;
-
-
