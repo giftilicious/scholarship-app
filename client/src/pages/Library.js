@@ -7,7 +7,7 @@ import Auth from '../utils/auth';
 
 const Library = () => {
   const {loading, data} = useQuery(QUERY_ME)
-  const collection = data?.me || {}
+  const library = data?.me || {}
   const [deleteScholarship, { error }] = useMutation(DELETE_SCHOLARSHIP)
 
   // This function will handle the click event to delete the scholarship from the collection
