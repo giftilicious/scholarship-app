@@ -10,10 +10,7 @@ const filterScholarship = (element,filter) => {
         element.ethnicity.forEach(ele => {
         if (ele===filter.ethnicity){
             found = true;
-          console.log("Same"+ ele + filter.ethnicity)
-        } else {
-          console.log("Not same" + ele + filter.ethnicity)
-        }
+        } 
       });
       if (!found){
         return true;
@@ -24,9 +21,6 @@ const filterScholarship = (element,filter) => {
         element.gender.forEach(ele => {
         if (ele===filter.gender){
             found = true;
-          console.log("Same"+ ele + filter.gender)
-        } else {
-          console.log("Not same" + ele + filter.gender)
         }
       });
       if (!found){
@@ -38,9 +32,6 @@ const filterScholarship = (element,filter) => {
         element.disability.forEach(ele => {
         if (ele===filter.disability){
             found = true;
-          console.log("Same"+ ele + filter.disability)
-        } else {
-          console.log("Not same" + ele + filter.disability)
         }
       });
       if (!found){
@@ -52,9 +43,6 @@ const filterScholarship = (element,filter) => {
         element.levelofstudy.forEach(ele => {
         if (ele===filter.levelofstudy){
             found = true;
-          console.log("Same"+ ele + filter.levelofstudy)
-        } else {
-          console.log("Not same" + ele + filter.levelofstudy)
         }
       });
       if (!found){
