@@ -21,19 +21,19 @@ const ScholarshipCard = ({ scholarship }) => {
               <p>Application e-mail: {scholarship.appemail}</p>
             </div>
           </div> */}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{scholarship.title}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${scholarship.amount}</h6>
-            <h7 class="card-subtitle mb-2 text-muted">Eligibility</h7>                   
-            <p class="card-text">Gender: {scholarship.gender}</p>
-            <p class="card-text">Ethinicity: {scholarship.ethnicity}</p>          
-            <p class="card-text">Disability: {scholarship.disability}</p>
-            <p class="card-text">Level of Study: {scholarship.levelofstudy}</p>          
-            <p class="card-text">Application deadline: {scholarship.deadline}</p>
-            <p class="card-text">{scholarship.description}</p>       
-            <a href={scholarship.applink} class="card-link">Apply</a>
-            <a href={"mailto:"+ scholarship.appemail} class="card-link">Email us</a>
+    <div className="card" style= {width:"18rem"}>
+        <div className="card-body">
+            <h5 className="card-title">{scholarship.title}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">${scholarship.amount}</h6>
+            <h7 className="card-subtitle mb-2 text-muted">Eligibility</h7>                   
+            <p className="card-text">Gender: {scholarship.gender}</p>
+            <p className="card-text">Ethinicity: {scholarship.ethnicity}</p>          
+            <p className="card-text">Disability: {scholarship.disability}</p>
+            <p className="card-text">Level of Study: {scholarship.levelofstudy}</p>          
+            <p className="card-text">Application deadline: {scholarship.deadline}</p>
+            <p className="card-text">{scholarship.description}</p>       
+            <a href={scholarship.applink} className="card-link">Apply</a>
+            <a href={"mailto:"+ scholarship.appemail} className="card-link">Email us</a>
         </div>
     </div>
 
