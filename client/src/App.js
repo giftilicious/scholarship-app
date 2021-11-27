@@ -10,11 +10,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import Library from './pages/Library';
-// import Collection from './pages/Collection';
-// import ProvideScholarship from './pages/ProvideScholarship';
+import Library from './pages/Library';
+import Collection from './pages/Collection';
+import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
-import Apply from './pages/Apply';
 import Header from './components/Header';
  
 // Construct our main GraphQL API endpoint
@@ -58,24 +57,16 @@ function App() {
               <Signup />
             </Route>
             {/* TODO Library page to be added */}
-            <Route exact path="/library">
-              <Library />
+            <Route exact path="/collection">
+              <Collection />
             </Route>
             {/* TODO scholarshipForm page to be added */}
             <Route exact path="/provideScholarship">
               <ProvideScholarship />
-            </Route> */}
-            {/* <Route exact path="/collection">
-              <Collection />
-            </Route>
-            {/* TODO search page to be added */}
-            {/* TODO apply page to be added */}
-            <Route exact path="/apply">
-              <Apply />
-            </Route>
+            </Route> 
             <Route exact path="/library">
               <Library />
-            </Route>                     */}
+            </Route>                     
           </div>
           <Footer />
         </div>
