@@ -85,6 +85,7 @@ query scholarship($scholarshipId: ID!) {
       disability
       levelofstudy
       gender
+      deadline
       applink
       appemail
   }
@@ -139,6 +140,7 @@ query allScholarships {
       disability
       levelofstudy
       gender
+      deadline
       applink
       appemail
   }
