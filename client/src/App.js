@@ -12,7 +12,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import Library from './pages/Library';
 // import Collection from './pages/Collection';
-// import ProvideScholarship from './pages/ProvideScholarship';
+import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
 import Header from './components/Header';
  
@@ -57,16 +57,16 @@ function App() {
               <Signup />
             </Route>
             {/* TODO Library page to be added */}
-            {/* <Route exact path="/collection">
-              <Collection />
-            </Route> */}
+            <Route exact path="/collection">
+              {/* <Collection /> */}
+            </Route>
             {/* TODO scholarshipForm page to be added */}
             {/* <Route exact path="/provideScholarship">
               <ProvideScholarship />
             </Route> 
             <Route exact path="/library">
-              <Library />
-            </Route>                      */}
+              {/* <Library /> */}
+            </Route>                     
           </div>
           <Footer />
         </div>
