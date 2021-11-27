@@ -51,7 +51,7 @@ const filterScholarship = (element, filter) => {
     }
   }
   if (!(element.type === undefined || element.type.length === 0) && (filter.type && filter.type.length > 0)) {
-    if (!(element.type != filter.type)) {
+    if (!(element.type !== filter.type)) {
       return true;
     }
   }
@@ -80,14 +80,21 @@ const SearchResults = () => {
     switch (e.target.name) {
       case "ethnicities":
         setEthnicity(selected);
+        break;
       case "disabilities":
         setDisability(selected);
+        break;
       case "genders":
         setGender(selected);
+        break;
       case "levels-of-study":
         setLevel(selected);
+        break;
       case "types":
         setType(selected);
+        break;
+      default:
+        console.log("Sorry, could not find what you are looking for");
     }
 
   }
@@ -99,6 +106,16 @@ const SearchResults = () => {
     level: level,
     type: type
   }
+// function to clear filters
+const clear = () => {
+  setEthnicity('');
+  setDisability('');
+  setGender('');
+  setLevel('');
+  setType('');
+
+  updateList();
+}
 
   const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
   const scholarships = data?.allScholarships || [];
@@ -220,11 +237,15 @@ const SearchResults = () => {
           ))}
         </select>
         <button type="button" className="btn btn-primary" onClick={updateList}>Submit</button>
+        <button type="submit" className="btn btn-primary" onClick={clear}>Clear Preferences</button>
       </form>
       {/* render results of (filtered) search */}
       <div>
+        {console.log(pScholarships)}
         {pScholarships.map((scholarship) => (
+          // console.log('working')
           <ScholarshipCard scholarship={scholarship} />
+          
         ))}
       </div>
     </div>

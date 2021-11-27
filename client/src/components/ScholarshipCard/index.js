@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ScholarshipCard = ({ scholarship }) => {
+const ScholarshipCard = (props) => {
 
   return (
     <div>
@@ -23,17 +23,17 @@ const ScholarshipCard = ({ scholarship }) => {
           </div> */}
     <div className="card" style= {{ width:'18rem' }}>
         <div className="card-body">
-            <h5 className="card-title">{scholarship.title}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">${scholarship.amount}</h6>
+            <h5 className="card-title">{props.scholarship.title}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">${props.scholarship.amount}</h6>
             <h6 className="card-subtitle mb-2 text-muted">Eligibility</h6>                   
-            <p className="card-text">Gender: {scholarship.gender}</p>
-            <p className="card-text">Ethinicity: {scholarship.ethnicity}</p>          
-            <p className="card-text">Disability: {scholarship.disability}</p>
-            <p className="card-text">Level of Study: {scholarship.levelofstudy}</p>          
-            <p className="card-text">Application deadline: {scholarship.deadline}</p>
-            <p className="card-text">{scholarship.description}</p>       
-            <a href={scholarship.applink} className="card-link">Apply</a>
-            <a href={"mailto:"+ scholarship.appemail} className="card-link">Email us</a>
+            <p className="card-text">Gender: {props.scholarship.gender}</p>
+            <p className="card-text">Ethinicity: {props.scholarship.ethnicity}</p>          
+            <p className="card-text">Disability: {props.scholarship.disability}</p>
+            <p className="card-text">Level of Study: {props.scholarship.levelofstudy}</p>          
+            <p className="card-text">Application deadline: {props.scholarship.deadline}</p>
+            <p className="card-text">{props.scholarship.description}</p>       
+            <a href={props.scholarship.applink} className="card-link">Apply</a>
+            <a href={"mailto:"+ props.scholarship.appemail} className="card-link">Email us</a>
         </div>
     </div>
 
