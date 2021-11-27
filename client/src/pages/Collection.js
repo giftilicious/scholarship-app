@@ -62,6 +62,6 @@ return (
     </Container>
   </>
 );  
-
+}
 
 export default Collection;
