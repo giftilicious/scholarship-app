@@ -14,9 +14,9 @@ import Login from './pages/Login';
 // import Collection from './pages/Collection';
 // import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
+// import Apply from './pages/Apply';
 import Header from './components/Header';
  
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -57,15 +57,25 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
+            {/* TODO Library page to be added */}
+            {/* <Route exact path="/library">
+              <Library />
+            </Route> */}
+            {/* TODO scholarshipForm page to be added */}
             {/* <Route exact path="/provideScholarship">
               <ProvideScholarship />
-            </Route> */}
+            </Route>  */}
             {/* <Route exact path="/collection">
               <Collection />
             </Route>
-            <Route exact path="/library">
+            {/* TODO search page to be added */}
+            {/* TODO apply page to be added */}
+            {/* <Route exact path="/apply">
+              <Apply />
+            </Route> */}
+            {/* <Route exact path="/library">
               <Library />
-            </Route>                     */}
+            </Route>                      */}
           </div>
           <Footer />
         </div>
