@@ -61,20 +61,12 @@ function App() {
               <Collection />
             </Route>
             {/* TODO scholarshipForm page to be added */}
-            {/* <Route exact path="/provideScholarship">
+            <Route exact path="/provideScholarship">
               <ProvideScholarship />
-            </Route>  */}
-            {/* <Route exact path="/collection">
-              <Collection />
-            </Route>
-            {/* TODO search page to be added */}
-            {/* TODO apply page to be added */}
-            {/* <Route exact path="/apply">
-              <Apply />
-            </Route> */}
-            {/* <Route exact path="/library">
+            </Route> 
+            <Route exact path="/library">
               <Library />
-            </Route>                      */}
+            </Route>                     
           </div>
           <Footer />
         </div>
