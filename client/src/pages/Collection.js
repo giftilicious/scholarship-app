@@ -29,62 +29,39 @@ const Collection = () => {
     }
   };
 
-  return (
-    <div>
-      {/* Conditional (ternary) operator is checking to see if loggedIn is true. If so render the following: */}
-      {Auth.loggedIn ? (
-        <div>
-         {/* Define elements that will render on screen if condition for user loggedin is true */}
-        </div>
-      ) : (
-        // If we are logged out, render this:
-        <div>
-          {/* Define elements that will render on the screen if user is not logged in */}
-          <h4>
-        You need to be logged in to see your saved award list. Use the navigation
-        links above to sign up or log in!
-      </h4>
-        </div>
-      )}
-    </div>
-  );
-};
+return (
+  <>
+    <Jumbotron fluid className='text-light bg-dark'>
+      <Container>
+        <h1>Viewing your collection</h1>
+      </Container>
+    </Jumbotron>
+    <Container>
+      <h2>
+        {collection.pickedScholarships.length
+          ? `Viewing ${collection.pickedScholarships.length} saved ${collection.pickedScholarships.length === 1 ? 'award' : 'awards'}:`
+          : 'You have no saved awards.'}
+      </h2>
+      <CardColumns>
+        {collection.pickedScholarships.map((scholarship) => {
+          return (
+            <Card key={scholarship.scholarshipId} border='dark'>
+              {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
+              <Card.Body>
+                <Card.Title>{scholarship.title}</Card.Title>
+                <p className='small'>Awards: {scholarship.title}</p>
+                <Card.Text>{scholarship.description}</Card.Text>
+                <Button className='btn-block btn-danger' onClick={() => handleDropScholarship(scholarship.scholarshipId)}>
+                  Delete this Award!
+                </Button>
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </CardColumns>
+    </Container>
+  </>
+);  
 
 
 export default Collection;
-
-
-//////////////
-  // return (
-  //   <>
-  //     <Jumbotron fluid className='text-light bg-dark'>
-  //       <Container>
-  //         <h1>Viewing saved books!</h1>
-  //       </Container>
-  //     </Jumbotron>
-  //     <Container>
-  //       <h2>
-  //         {collection.pickedScholarships.length
-  //           ? `Viewing ${collection.pickedScholarships.length} saved ${collection.pickedScholarships.length === 1 ? 'award' : 'awards'}:`
-  //           : 'You have no saved awards.'}
-  //       </h2>
-  //       <CardColumns>
-  //         {collection.pickedScholarships.map((scholarship) => {
-  //           return (
-  //             <Card key={scholarship.scholarshipId} border='dark'>
-  //               {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
-  //               <Card.Body>
-  //                 <Card.Title>{scholarship.title}</Card.Title>
-  //                 <p className='small'>Authors: {book.authors}</p>
-  //                 <Card.Text>{scholarship.description}</Card.Text>
-  //                 <Button className='btn-block btn-danger' onClick={() => handleDropScholarship(scholarship.scholarshipId)}>
-  //                   Delete this Award!
-  //                 </Button>
-  //               </Card.Body>
-  //             </Card>
-  //           );
-  //         })}
-  //       </CardColumns>
-  //     </Container>
-  //   </>
-  // );
