@@ -2,35 +2,36 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 // import { useParams, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
-// import { DROP_SCHOLARSHIP } from '../utils/mutations'
+import { DROP_SCHOLARSHIP } from '../utils/mutations'
 import Auth from '../utils/auth';
 
 const Collection = () => {
-    const {loading, data} = useQuery(QUERY_ME)
+  const { loading, data } = useQuery(QUERY_ME)
   // 'collection' will pass through the return statement below when authenticating user
   const collection = data?.me || {}
-  // const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
+  const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
 
-// This function will handle the click event to delete the scholarship from the collection
+  // This function will handle the click event to delete the scholarship from the collection
   const handleDropScholarship = async (scholarshipId) => {
-  
+
     if (!token) {
       return false;
     }
 
     try {
-      const {data} = await dropScholarship({
-        variables: {scholarshipId}
+      await dropScholarship({
+        variables: { scholarshipId }
       })
 
-      dropScholarshipId(scholarshipId);
     } catch (err) {
       console.error(err);
     }
   };
 
-return (
-  <>
+  return (
+    <div>
+      {Auth.loggedIn ? (
+      <div>
     <Jumbotron fluid className='text-light bg-dark'>
       <Container>
         <h1>Viewing your collection</h1>
@@ -60,8 +61,18 @@ return (
         })}
       </CardColumns>
     </Container>
-  </>
-);  
-}
+    </div>
+      ) : (
+        <div>
+          {/* Define elements that will render on the screen if user is not logged in */}
+          <h4>
+            You need to be logged in to see your saved award list. Use the navigation
+            links above to sign up or log in!
+          </h4>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Collection;
