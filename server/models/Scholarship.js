@@ -4,9 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const scholarshipSchema = new Schema({
   title: {
     type: String,
-    required: 'Scholarship should have a title!',
-    minlength: 1,
-    maxlength: 200,
+    required: true,
     trim: true,
   },
   type: {
@@ -18,14 +16,12 @@ const scholarshipSchema = new Schema({
     type: String,
     trim: true,
   },
-  value: {
-    type: Number,
-    required: true,
-  },
   deadline: {
-    type: Date,
-    required: true,
-    get: (timestamp) => dateFormat(timestamp),
+    type: String,
+    trim: true,
+  },
+  amount: {
+      type: Number,
   },
   ethnicity: {
     type: [String],
@@ -46,11 +42,6 @@ const scholarshipSchema = new Schema({
   appemail: {
     type: String,
     trim: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
   },
 });
 

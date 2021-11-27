@@ -1,9 +1,17 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought, Scholarship } = require('../models');
+const { User, Scholarship } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    me: async (parent, args,context) => {
+      if (context.user) {
+        const userData= await User.findOne({ _id: context.user._id })
+        .select('-__v -password');
+        return userData;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     users: async () => {
       return User.find().populate('definedScholarships');
     },
@@ -41,12 +49,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addScholarship: async (parent, { username, title, type, description, value, deadline, ethnicity, disability, levelofstudy, gender, applink, appemail}) => {
+    addScholarship: async (parent, { username, title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail}) => {
       console.log(username)
       console.log(title)
-      console.log(gender);
-      console.log(disability)
-      const scholarship = await Scholarship.create({ title, type, description, value,deadline, ethnicity, disability, levelofstudy, gender, applink, appemail });
+   
+      const scholarship = await Scholarship.create({ title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail});
 
       await User.findOneAndUpdate(
         { username: username },

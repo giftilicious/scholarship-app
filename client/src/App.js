@@ -6,20 +6,17 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import SingleThought from './pages/SingleThought';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Library from './pages/Library';
-import ScholarshipForm from './pages/ScholarshipForm';
 import Collection from './pages/Collection';
-import Search from './pages/Search';
+import ProvideScholarship from './pages/ProvideScholarship';
+import Footer from './components/Footer';
 import Apply from './pages/Apply';
-
+import Header from './components/Header';
+ 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -65,24 +62,20 @@ function App() {
               <Library />
             </Route>
             {/* TODO scholarshipForm page to be added */}
-            <Route exact path="/scholarship">
-              <ScholarshipForm />
+            <Route exact path="/provideScholarship">
+              <ProvideScholarship />
             </Route>
-            {/* TODO Collection page to be added */}
             <Route exact path="/collection">
               <Collection />
             </Route>
             {/* TODO search page to be added */}
-            <Route exact path="/search">
-              <Search />
-            </Route>
             {/* TODO apply page to be added */}
             <Route exact path="/apply">
               <Apply />
             </Route>
-            {/* <Route exact path="/thoughts/:thoughtId">
-              <SingleThought />
-            </Route> */}
+            <Route exact path="/library">
+              <Library />
+            </Route>                    
           </div>
           <Footer />
         </div>
@@ -90,5 +83,6 @@ function App() {
     </ApolloProvider>
   );
 }
+
 
 export default App;
