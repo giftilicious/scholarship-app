@@ -219,7 +219,7 @@ const SearchResults = () => {
             <option value={type}>{type}</option>
           ))}
         </select>
-        <button type="submit" className="btn btn-primary" onClick={updateList}>Submit</button>
+        <button type="button" className="btn btn-primary" onClick={updateList}>Submit</button>
       </form>
       {/* render results of (filtered) search */}
       <div>
