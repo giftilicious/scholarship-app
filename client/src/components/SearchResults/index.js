@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
-const filter = [];
+
 
 const filterScholarship = (element, filter) => {
   if (!(element.ethnicity === undefined || element.ethnicity.length === 0) && (filter.ethnicity && filter.ethnicity.length > 0)) {
@@ -107,7 +107,7 @@ const SearchResults = () => {
   
   const updateList = () =>{
   scholarships.forEach(element => {
-    if (filterScholarship(element, filter)) {
+    if (filterScholarship(element, selection)) {
       //console.log("Filtered");
     } else {
       //console.log("Not filtered");
