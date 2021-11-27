@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
-// import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
+import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
 const filter = [];
 
 const filterScholarship = (element, filter) => {
@@ -100,12 +100,12 @@ const SearchResults = () => {
     type: type
   }
 
-  // const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
-  // const scholarships = data?.allScholarships || [];
-  const scholarships = [];
-
-
-  const pScholarships = [];
+  const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
+  const scholarships = data?.allScholarships || [];
+ 
+  const [pScholarships, setpScholarships] = useState([]);
+  
+  const updateList = () =>{
   scholarships.forEach(element => {
     if (filterScholarship(element, filter)) {
       //console.log("Filtered");
@@ -177,12 +177,14 @@ const SearchResults = () => {
         });
       }
 
-      pScholarships.push(newScholarship);
+      // pScholarships.push(newScholarship);
+      setpScholarships([...pScholarships, newScholarship]);
     }
 
   });
+  }
 
-  const filteredList = pScholarships;
+  
   return (
     <div>
       {/* Form to render the filters */}
@@ -217,10 +219,11 @@ const SearchResults = () => {
             <option value={type}>{type}</option>
           ))}
         </select>
+        <button type="submit" className="btn btn-primary" onClick={updateList}>Submit</button>
       </form>
       {/* render results of (filtered) search */}
       <div>
-        {filteredList.map((scholarship) => (
+        {pScholarships.map((scholarship) => (
           <ScholarshipCard scholarship={scholarship} />
         ))}
       </div>
