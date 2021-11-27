@@ -38,7 +38,8 @@ mutation addScholarship(
   $gender: [String!]
   $applink: String
   $appemail: String
-) {
+) 
+{
   addScholarship(
     username: $username
     title: $title
@@ -52,15 +53,95 @@ mutation addScholarship(
     gender: $gender
     applink: $applink
     appemail: $appemail
-  ) {
+  ) 
+  {
     title
     type
-
   }
 }
 `;
 
-
-
-
-
+export const DELETE_SCHOLARSHIP = gql`
+mutation deleteScholarship($username: String!,$scholarshipId: ID!) 
+{
+  deleteScholarship(username:$username, scholarshipId:$scholarshipId)
+  {
+    title
+  } 
+}
+`;
+export const PICK_SCHOLARSHIPS = gql`
+mutation pickScholarship($username: String! $scholarshipId: ID!)
+{
+  pickScholarship(
+    username: $username
+    scholarshipId: $scholarshipId
+  ) 
+  {
+    _id
+      username
+    	usertype
+      email
+      definedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+      pickedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+    }
+  }
+`;
+export const DROP_SCHOLARSHIP = gql`
+mutation dropScholarship($username: String! $scholarshipId: ID!)
+{
+  dropScholarship(username: $username scholarshipId: $scholarshipId)
+  {
+    _id
+      username
+    	usertype
+      email
+      definedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+      pickedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+    }
+  }
+`;
