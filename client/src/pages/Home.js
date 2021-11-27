@@ -3,13 +3,15 @@ import {useQuery} from '@apollo/client';
 import SearchResults from '../components/SearchResults';
 import ScholarshipList from '../components/ScholarshipList';
 import Auth from '../utils/auth';
-import {QUERY_SCHOLARSHIPS} from '../utils/queries'
+// import {QUERY_SCHOLARSHIPS} from '../utils/queries'
 
 
 const Home = () => {
 
-  const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
-  const scholarships = data?.allScholarships || [];
+  // const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
+  // const scholarships = data?.allScholarships || [];
+  const scholarships = [];
+  const loading  = null;
 
   
   const pScholarships = [];

@@ -2,14 +2,14 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 // import { useParams, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
-import { DROP_SCHOLARSHIP } from '../utils/mutations'
+// import { DROP_SCHOLARSHIP } from '../utils/mutations'
 import Auth from '../utils/auth';
 
 const Collection = () => {
     const {loading, data} = useQuery(QUERY_ME)
   // 'collection' will pass through the return statement below when authenticating user
   const collection = data?.me || {}
-  const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
+  // const [dropScholarship, { error }] = useMutation(DROP_SCHOLARSHIP)
 
 // This function will handle the click event to delete the scholarship from the collection
   const handleDropScholarship = async (scholarshipId) => {

@@ -2,7 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
-import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
+// import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
+const filter = [];
 
 const filterScholarship = (element, filter) => {
   if (!(element.ethnicity === undefined || element.ethnicity.length === 0) && (filter.ethnicity && filter.ethnicity.length > 0)) {
@@ -99,8 +100,9 @@ const SearchResults = () => {
     type: type
   }
 
-  const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
-  const scholarships = data?.allScholarships || [];
+  // const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
+  // const scholarships = data?.allScholarships || [];
+  const scholarships = [];
 
 
   const pScholarships = [];
