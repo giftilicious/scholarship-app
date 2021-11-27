@@ -14,7 +14,11 @@ import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import Library from './pages/Library';
+import ScholarshipForm from './pages/ScholarshipForm';
+import Collection from './pages/Collection';
+import Search from './pages/Search';
+import Apply from './pages/Apply';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -58,23 +62,23 @@ function App() {
             </Route>
             {/* TODO Library page to be added */}
             <Route exact path="/library">
-              < />
+              <Library />
             </Route>
             {/* TODO scholarshipForm page to be added */}
             <Route exact path="/scholarship">
-              < />
+              <ScholarshipForm />
             </Route>
             {/* TODO Collection page to be added */}
             <Route exact path="/collection">
-              < />
+              <Collection />
             </Route>
             {/* TODO search page to be added */}
             <Route exact path="/search">
-              < />
+              <Search />
             </Route>
             {/* TODO apply page to be added */}
             <Route exact path="/apply">
-              < />
+              <Apply />
             </Route>
             {/* <Route exact path="/thoughts/:thoughtId">
               <SingleThought />
