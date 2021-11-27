@@ -29,55 +29,41 @@ const Library = () => {
   };
 
   return (
-    <div>
-      {/* Conditional (ternary) operator is checking to see if loggedIn is true. If so render the following: */}
-      {Auth.loggedIn ? (
-        <div>
-         {/* Define elements that will render on screen if condition for user loggedin is true */}
-        </div>
-      ) : (
-        // If we are logged out, render this:
-        <div>
-          {/* Define elements that will render on the screen if user is not logged in */}
-          <h4>
-        You need to be logged in to see your saved award list. Use the navigation
-        links above to sign up or log in!
-      </h4>
-        </div>
-      )}
-    </div>
-  );
+    <>
+      <Jumbotron fluid className='text-light bg-dark'>
+        <Container>
+          <h1>Viewing your library</h1>
+        </Container>
+      </Jumbotron>
+      <Container>
+        <h2>
+          {collection.definedScholarships.length
+            ? `Viewing ${collection.definedScholarships.length} saved ${collection.definedScholarships.length === 1 ? 'award' : 'awards'}:`
+            : 'You have no saved awards.'}
+        </h2>
+        <CardColumns>
+          {collection.definedScholarships.map((scholarship) => {
+            return (
+              <Card key={scholarship.scholarshipId} border='dark'>
+                {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
+                <Card.Body>
+                  <Card.Title>{scholarship.title}</Card.Title>
+                  <p className='small'>Awards: {scholarship.title}</p>
+                  <Card.Text>{scholarship.description}</Card.Text>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteScholarship(scholarship.scholarshipId)}>
+                    Delete Award
+                  </Button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
+    </>
+  );  
+  
 
 };
 
 export default Library;
 
-
-///////
-// return (
-  //   <div>
-  //     <div className="flex-row justify-space-between my-4">
-  //       {definedScholarships &&
-  //         definedScholarships.map((definedScholarships) => (
-  //           <div key={skill} className="col-12 col-xl-6">
-  //             <div className="card mb-3">
-  //               <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
-  //                 <span>{definedScholarships}</span>
-  //                 {isLoggedInUser && (
-  //                   <button
-  //                     className="btn btn-sm btn-danger ml-auto"
-  //                     onClick={() => handleDeleteScholarship(definedScholarships)}
-  //                   >
-  //                     X
-  //                   </button>
-  //                 )}
-  //               </h4>
-  //             </div>
-  //           </div>
-  //         ))}
-  //     </div>
-  //     {error && (
-  //       <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-  //     )}
-  //   </div>
-  // );
