@@ -28,39 +28,39 @@ const Library = () => {
     }
   };
 
-  return (
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Viewing your library</h1>
-        </Container>
-      </Jumbotron>
-      <Container>
-        <h2>
-          {collection.definedScholarships.length
-            ? `Viewing ${collection.definedScholarships.length} saved ${collection.definedScholarships.length === 1 ? 'award' : 'awards'}:`
-            : 'You have no saved awards.'}
-        </h2>
-        <CardColumns>
-          {collection.definedScholarships.map((scholarship) => {
-            return (
-              <Card key={scholarship.scholarshipId} border='dark'>
-                {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{scholarship.title}</Card.Title>
-                  <p className='small'>Awards: {scholarship.title}</p>
-                  <Card.Text>{scholarship.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteScholarship(scholarship.scholarshipId)}>
-                    Delete Award
-                  </Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
-    </>
-  );  
+//   return (
+//     <>
+//       <Jumbotron fluid className='text-light bg-dark'>
+//         <Container>
+//           <h1>Viewing your library</h1>
+//         </Container>
+//       </Jumbotron>
+//       <Container>
+//         <h2>
+//           {collection.definedScholarships.length
+//             ? `Viewing ${collection.definedScholarships.length} saved ${collection.definedScholarships.length === 1 ? 'award' : 'awards'}:`
+//             : 'You have no saved awards.'}
+//         </h2>
+//         <CardColumns>
+//           {collection.definedScholarships.map((scholarship) => {
+//             return (
+//               <Card key={scholarship.scholarshipId} border='dark'>
+//                 {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
+//                 <Card.Body>
+//                   <Card.Title>{scholarship.title}</Card.Title>
+//                   <p className='small'>Awards: {scholarship.title}</p>
+//                   <Card.Text>{scholarship.description}</Card.Text>
+//                   <Button className='btn-block btn-danger' onClick={() => handleDeleteScholarship(scholarship.scholarshipId)}>
+//                     Delete Award
+//                   </Button>
+//                 </Card.Body>
+//               </Card>
+//             );
+//           })}
+//         </CardColumns>
+//       </Container>
+//     </>
+//   );  
 };
 
 export default Library;
