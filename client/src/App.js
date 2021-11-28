@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import Library from './pages/Library';
-import Collection from './pages/Collection';
+// import Collection from './pages/Collection';
 import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -56,16 +56,16 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            <Route exact path="/collection">
+            {/* <Route exact path="/collection">
               <Collection />
-            </Route>
-            {/* TODO scholarshipForm page to be added */}
+            </Route> */}
+            {/* {/* TODO scholarshipForm page to be added */}
             <Route exact path="/provideScholarship">
               <ProvideScholarship />
             </Route> 
-            <Route exact path="/library">
-              {/* <Library /> */}
-            </Route>                     
+            {/* <Route exact path="/library">
+              <Library /> 
+            </Route>                      */}
           </div>
           <Footer />
         </div>
