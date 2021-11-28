@@ -12,7 +12,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import Library from './pages/Library';
 // import Collection from './pages/Collection';
-import ProvideScholarship from './pages/ProvideScholarship';
+// import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
 import Header from './components/Header';
  
@@ -66,7 +66,7 @@ function App() {
             </Route> 
             <Route exact path="/library">
               {/* <Library /> */}
-            </Route>                     
+            {/* </Route>                      */}
           </div>
           <Footer />
         </div>

@@ -74,55 +74,62 @@ const SearchResults = () => {
   const [level, setLevel] = useState('');
   const [type, setType] = useState('');
 
+  // object will store filter values each time a select element value changes
+  const selection = {
+      ethinicity: ethnicity,
+      disability: disability,
+      gender: gender,
+      level: level,
+      type: type
+  };
+  // console.log('Initital selection     ', selection)
+
   // Handler for all states
   const handleSelect = (e) => {
     const selected = e.target.value;
     switch (e.target.name) {
       case "ethnicities":
         setEthnicity(selected);
+        selection.ethinicity=selected;
         break;
       case "disabilities":
         setDisability(selected);
+        selection.disability=selected;
         break;
       case "genders":
         setGender(selected);
+        selection.gender=selected;
         break;
       case "levels-of-study":
         setLevel(selected);
+        selection.level=selected;
         break;
       case "types":
         setType(selected);
+        selection.type=selected;
         break;
       default:
         console.log("Sorry, could not find what you are looking for");
     }
-
+    console.log('selection in handler', selection);
   }
-  // Object with all selected filters
-  const selection = {
-    ethinicity: ethnicity,
-    disability: disability,
-    gender: gender,
-    level: level,
-    type: type
-  }
-// function to clear filters
-const clear = () => {
-  setEthnicity('');
-  setDisability('');
-  setGender('');
-  setLevel('');
-  setType('');
+ 
+  
 
-  updateList();
-}
-
+  // Query for all available scholarships. Returns [Scholarship].
   const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
   const scholarships = data?.allScholarships || [];
+
+  console.log('All scholarships', scholarships);
  
   const [pScholarships, setpScholarships] = useState([]);
   
+  // console.log('pScholarships instantiation',pScholarships);
+  
   const updateList = () =>{
+    //Array to hold filteredResults
+    const filteredResults = [];
+
   scholarships.forEach(element => {
     if (filterScholarship(element, selection)) {
       //console.log("Filtered");
@@ -155,7 +162,7 @@ const clear = () => {
       } else {
         element.ethnicity.forEach(eth => {
           if (newScholarship.ethnicity.length > 0) {
-            newScholarship.ethnicity = newScholarship.ethnicity + ', ';
+            newScholarship.ethnicity = newScholarship.ethnicity + ', ';      
           }
           newScholarship.ethnicity = newScholarship.ethnicity + eth;
         });
@@ -193,15 +200,42 @@ const clear = () => {
           newScholarship.disability = newScholarship.disability + eth;
         });
       }
+      // store value in filtered array
+      filteredResults.push(newScholarship); 
 
-      // pScholarships.push(newScholarship);
-      setpScholarships([...pScholarships, newScholarship]);
+      // pScholarships.push(newScholarship);      
     }
 
   });
+  console.log("filtered Results", filteredResults);
+  // after finalizing 'for each' loop
+  //pass container array (filteredResults) into tracked state pScholarships.
+   setpScholarships([filteredResults]);
+
   }
 
-  
+      // function to clear filters and re-render page
+      const clear = () => {
+        setEthnicity('');
+        setDisability('');
+        setGender('');
+        setLevel('');
+        setType('');
+
+        updateList();
+      }
+
+
+
+  // loading
+  if(loading){
+    return(
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
+  // loaded
   return (
     <div>
       {/* Form to render the filters */}
@@ -241,11 +275,13 @@ const clear = () => {
       </form>
       {/* render results of (filtered) search */}
       <div>
-        {console.log(pScholarships)}
+        {/* {console.log(pScholarships)} */}
         {pScholarships.map((scholarship) => (
           // console.log('working')
-          <ScholarshipCard scholarship={scholarship} />
+           
+          <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
           
+
         ))}
       </div>
     </div>
