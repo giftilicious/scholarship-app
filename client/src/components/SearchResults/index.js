@@ -4,73 +4,13 @@ import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
 
-// import { isType } from 'graphql';
-
-
-// const filterScholarship = (element, filter) => {
-//   // if element.ethnicity array has values
-//   if (!(element.ethnicity === undefined || element.ethnicity.length === 0) && (filter.ethnicity && filter.ethnicity.length > 0)) {
-//     let found = false;
-//       // check if one of the ethnicity values equals that of the filter
-//     element.ethnicity.forEach(ele => {
-//       if (ele === filter.ethnicity) {
-//         found = true;
-//       }
-//     });
-
-//     if (!found) {
-//       return true;
-//     }
-//   }
-//   if (!(element.gender === undefined || element.gender.length === 0) && (filter.gender && filter.gender.length > 0)) {
-//     let found = false;
-//     element.gender.forEach(ele => {
-//       if (ele === filter.gender) {
-//         found = true;
-//       }
-//     });
-//     if (!found) {
-//       return true;
-//     }
-//   }
-//   if (!(element.disability === undefined || element.disability.length === 0) && (filter.disability && filter.disability.length > 0)) {
-//     let found = false;
-//     element.disability.forEach(ele => {
-//       if (ele === filter.disability) {
-//         found = true;
-//       }
-//     });
-//     if (!found) {
-//       return true;
-//     }
-//   }
-//   if (!(element.levelofstudy === undefined || element.levelofstudy.length === 0) && (filter.levelofstudy && filter.levelofstudy.length > 0)) {
-//     let found = false;
-//     element.levelofstudy.forEach(ele => {
-//       if (ele === filter.levelofstudy) {
-//         found = true;
-//       }
-//     });
-//     if (!found) {
-//       return true;
-//     }
-//   }
-//   if (!(element.type === undefined || element.type.length === 0) && (filter.type && filter.type.length > 0)) {
-//     if (!(element.type !== filter.type)) {
-//       return true;
-//     }
-//   }
-
-//   return false;
-// }
-
 const SearchResults = () => {
   // Arrays for storing filter options
   const ethnicities = ["", "Black", "Indigenous", "Asian"];
-  const disabilities = ["", "Physical Disability", "Intellectual Disability", "Learning Disability"];
+  const disabilities = ["", "Physical", "Intellectual", "Learning Difference"];
   const genders = ["", "Female", "Male", "Gender Diverse"];
   const levels = ["", "High School", "Post-Secondary"];
-  const types = ["", "Bursary", "Scholarship"];
+  const types = ["", "Bursary", "Scholarship", "Award"];
 
   // Tracking states of each filter
   const [ethnicity, setEthnicity] = useState('');
@@ -139,12 +79,17 @@ const SearchResults = () => {
     let byLevel = [];
     let final = [];
 
+    console.log('selection in handler', selection);
+
     // Functions to implement filter tests:
       // returns true if one of the ethnicities matches the ethnicity filter
       // nested callback function inside anonymous function to be able to pass in two arguments in the array.filter() method
    function isEthnicity (selection){
      return function (element){
        let found=false;
+       if (element.ethnicity.length===0){
+         return true;
+       }
       element.ethnicity.forEach((eth) =>{
         if(eth === selection.ethnicity){
          found = true;
@@ -158,6 +103,9 @@ const SearchResults = () => {
    function isDisability (selection){
     return function (element){
       let found=false;
+      if (element.disability.length===0){
+        return true;
+      }
      element.disability.forEach((dis) =>{
        if(dis === selection.disability){
         found = true;
@@ -171,6 +119,9 @@ const SearchResults = () => {
    function isGender (selection){
     return function (element){
       let found=false;
+      if (element.gender.length===0){
+        return true;
+      }
      element.gender.forEach((gen) =>{
        if(gen === selection.gender){
         found = true;
@@ -184,6 +135,9 @@ const SearchResults = () => {
    function isLevel (selection){
     return function (element){
       let found=false;
+      if (element.levelofstudy.length===0){
+        return true;
+      }
      element.levelofstudy.forEach((lev) =>{
        if(lev === selection.level){
         found = true;
@@ -241,88 +195,6 @@ const SearchResults = () => {
       final = byLevel;
     }
     setpScholarships(final);
-
-  // scholarships.forEach(element => {
-  //   if (filterScholarship(element, selection)) {
-  //     //console.log("Filtered");
-  //   } else {
-  //     //console.log("Not filtered");
-  //     const newScholarship = {
-  //       title: element.title,
-  //       type: element.type,
-  //       description: element.description,
-  //       deadline: element.deadline,
-  //       amount: element.amount,
-  //       ethnicity: '',
-  //       gender: '',
-  //       levelofstudy: '',
-  //       disability: '',
-  //       applink: element.applink,
-  //       appemail: element.appemail,
-  //     }
-  //     if (newScholarship.deadline === undefined || !newScholarship.deadline || newScholarship.deadline.length === 0) {
-  //       newScholarship.deadline = 'None';
-  //     }
-  //     if (newScholarship.applink === undefined || !newScholarship.applink || newScholarship.applink.length === 0) {
-  //       newScholarship.applink = 'Not provided';
-  //     }
-  //     if (newScholarship.appemail === undefined || !newScholarship.appemail || newScholarship.appemail.length === 0) {
-  //       newScholarship.appemail = 'Not provided';
-  //     }
-  //     if (element.ethnicity === undefined || element.ethnicity.length === 0) {
-  //       newScholarship.ethnicity = 'Any';
-  //     } else {
-  //       element.ethnicity.forEach(eth => {
-  //         if (newScholarship.ethnicity.length > 0) {
-  //           newScholarship.ethnicity = newScholarship.ethnicity + ', ';      
-  //         }
-  //         newScholarship.ethnicity = newScholarship.ethnicity + eth;
-  //       });
-  //     }
-
-  //     if (element.gender === undefined || element.gender.length === 0) {
-  //       newScholarship.gender = 'Any';
-  //     } else {
-  //       element.gender.forEach(eth => {
-  //         if (newScholarship.gender.length > 0) {
-  //           newScholarship.gender = newScholarship.gender + ', ';
-  //         }
-  //         newScholarship.gender = newScholarship.gender + eth;
-  //       });
-  //     }
-
-  //     if (element.levelofstudy === undefined || element.levelofstudy.length === 0) {
-  //       newScholarship.levelofstudy = 'Any';
-  //     } else {
-  //       element.levelofstudy.forEach(eth => {
-  //         if (newScholarship.levelofstudy.length > 0) {
-  //           newScholarship.levelofstudy = newScholarship.levelofstudy + ', ';
-  //         }
-  //         newScholarship.levelofstudy = newScholarship.levelofstudy + eth;
-  //       });
-  //     }
-
-  //     if (element.disability === undefined || element.disability.length === 0) {
-  //       newScholarship.disability = 'Any';
-  //     } else {
-  //       element.disability.forEach(eth => {
-  //         if (newScholarship.disability.length > 0) {
-  //           newScholarship.disability = newScholarship.disability + ', ';
-  //         }
-  //         newScholarship.disability = newScholarship.disability + eth;
-  //       });
-  //     }
-  //     // store value in filtered array
-  //     filteredResults.push(newScholarship); 
-
-  //     // pScholarships.push(newScholarship);      
-  //   }
-
-  // });
-  // console.log("filtered Results", filteredResults);
-  // after finalizing 'for each' loop
-  //pass container array (filteredResults) into tracked state pScholarships.
-  //  setpScholarships(filteredResults);
 
   }
 

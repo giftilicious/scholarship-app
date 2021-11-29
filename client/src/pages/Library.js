@@ -16,22 +16,15 @@ const Library = () => {
     variables: { username: Auth.getUser().data.username },
   }
   );
-  console.log(data);
 
   // 'library' will pass through the return statement below when authenticating user
   const library = data?.user || {}
-
 
   const [deleteScholarship, { error }] = useMutation(DELETE_SCHOLARSHIP)
 
   // This function will handle the click event to delete the scholarship from the library
   const handleDeleteScholarship = async (scholarshipId) => {
     
-    // if (!token) {
-    //   return false;
-    // }
-    console.log(scholarshipId)
-
     try {
       const {data} = await deleteScholarship({
         variables: {username:Auth.getUser().data.username,scholarshipId}
@@ -74,10 +67,10 @@ const Library = () => {
                 {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{scholarship.title}</Card.Title>
-                  <p className='small'>Awards: {scholarship.title}</p>
+                  <p >Amount: ${scholarship.amount}</p>
                   <Card.Text>{scholarship.description}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteScholarship(scholarship._id)}>
-                    Delete Award
+                    Delete Scholarship
                   </Button>
                 </Card.Body>
               </Card>
