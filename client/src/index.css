@@ -413,6 +413,7 @@ dl {
 
 label {
   display: inline-block;
+  align-self:center;
 }
 
 input,
@@ -1093,6 +1094,10 @@ a:hover {
   background-color: #31a9e1;
 }
 
+#sbmtBtnS, #clrBtnS {
+  margin-top: 2rem;
+}
+
 .card {
   border: 1px solid #1a1a1a;
   margin-bottom: 1rem;
@@ -1288,7 +1293,7 @@ label form [type='radio'] {
 
 .col-2 {
   flex: 0 0 16.66667%;
-  max-width: 16.66667%;
+  max-width: 16.66667%;  
 }
 
 .col-3 {
@@ -1339,6 +1344,9 @@ label form [type='radio'] {
 .col-12 {
   flex: 0 0 100%;
   max-width: 100%;
+}
+.fl-label{
+  margin-right:0.5rem !important;
 }
 
 /* col-sm */
@@ -1623,7 +1631,7 @@ label form [type='radio'] {
   }
   .align-content-center-lg {
     align-content: center;
-  }
+  } 
 }
 
 /* col-xl */
@@ -1714,5 +1722,11 @@ label form [type='radio'] {
   }
   .align-content-center-xl {
     align-content: center;
+  }
+  #disabilities{
+    margin-left:2rem;  
+  }
+  #disabilitiesL{
+    margin-left:2rem;
   }
 }
