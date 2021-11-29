@@ -9,6 +9,7 @@
   - [GitHub](#github)
   - [Features](#features)
   - [Tests](#tests)
+  - [Heroku](#heroku)
 
 ## Description
 This application has been built collaboratively with the student in mind. Entering post-secondary education can be a stressful time. Each year, tutition increases and paying for school becomes more of a predicament. The appication is geared toward minority students looking for scholarships and bursaries. A large portion of post-secondary students are comparised of minority students from various backgrounds and races, including Black, Indigenous and Asian. 
@@ -141,3 +142,7 @@ Fork the repo to a local folder.
 From the local folder, open the command-line.
 From the command-line (in the root folder of the local folder), run 'npm run test'.
 You must install the npm jest dependency to be able to run the test using the mentioned command. 
+
+## Heroku
+
+https://aqueous-ocean-45024.herokuapp.com/
