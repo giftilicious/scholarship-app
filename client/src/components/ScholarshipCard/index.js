@@ -4,6 +4,11 @@ import { HANDLE_SCHOLARSHIP } from '../../utils/mutations'
 import Auth from '../../utils/auth';
 import '../../assets/css/style.css';
 
+const styles = {
+  btnBorder: {
+    border: '1px outset #519DD9',
+  }
+}
 
 const ScholarshipCard = ({ scholarship }) => {
 
@@ -60,12 +65,12 @@ const ScholarshipCard = ({ scholarship }) => {
                 <button type="button" className="btn btn-sm btn-outline-fill">Apply</button> */}
                 {Auth.getUser().data.usertype==='Provider' ? ( 
                   <div className="btn-group w-100">
-                    <button type="button" className="btn btn-sm btn-outline-fill">Update</button>
-                    <button type="button" className="btn btn-sm btn-outline-fill">Delete</button>
+                    <button type="button" className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Update</button>
+                    <button type="button" className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Delete</button>
                   </div>
                 ):(
                   <div className="btn-group w-100">
-                    <a href={scholarship.applink} className="btn btn-sm btn-outline-fill">Apply</a>
+                    <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Apply</a>
                   </div>
                  )}
             </div>

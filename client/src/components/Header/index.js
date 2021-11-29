@@ -6,34 +6,32 @@ import '../../assets/css/style.css';
 
 const Header = () => {
   
-  const [ scrolled, setScrolled ] = React.useState(false);
+  // const [ scrolled, setScrolled ] = React.useState(false);
 
-  const handleScroll = () => {
-    const offset = window.scrollY;
+  // const handleScroll = () => {
+  //   const offset = window.scrollY;
 
-    if (offset > 300 ) {
-      setScrolled(true);
-    }
-    else {
-      setScrolled(false);
-    }
-  }
+  //   if (offset > 300 ) {
+  //     setScrolled(true);
+  //   }
+  //   else {
+  //     setScrolled(false);
+  //   }
+  // }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-  })
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll)
+  // })
 
-  let stickyclass = ['header'];
+  // let stickyclass = ['header'];
 
-  if (scrolled) {
-    stickyclass.push('scrolled');
-  }
+  // if (scrolled) {
+  //   stickyclass.push('scrolled');
+  // }
 
   return (
 
-		<header id="header" className={stickyclass.join(" ")}>
           <Navbar/>
-		</header>
 
 
 		// <header id="header">

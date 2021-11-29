@@ -258,7 +258,7 @@ const SearchResults = () => {
         <button type="submit" className="btn btn-primary" onClick={clear}>Clear Preferences</button>
       </form>
       {/* render results of (filtered) search */}
-      <div>
+      <div className="row">
         {/* {console.log(pScholarships)} */}
         {pScholarships.map((scholarship) => (
           // console.log('working')
