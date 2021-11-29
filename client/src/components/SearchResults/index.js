@@ -67,7 +67,7 @@ const SearchResults = () => {
 
   console.log('All scholarships', scholarships);
  
-  const [pScholarships, setpScholarships] = useState([]);
+  const [pScholarships, setpScholarships] = useState(scholarships);
   
   // console.log('pScholarships instantiation',pScholarships);
   
