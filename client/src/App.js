@@ -7,6 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Auth from './utils/auth';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -15,6 +16,7 @@ import Collection from './pages/Collection';
 import ProvideScholarship from './pages/ProvideScholarship';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Jumbotron from './components/Jumbotron';
 import './assets/css/style.css';
  
 // Construct our main GraphQL API endpoint
@@ -45,32 +47,46 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            {/* TODO Library page to be added */}
-            <Route exact path="/collection">
-              <Collection /> 
-            </Route>
-            {/* TODO scholarshipForm page to be added */}
-            <Route exact path="/provideScholarship">
-              <ProvideScholarship />
-            </Route> 
-            <Route exact path="/library">
-             <Library /> 
-            </Route>                     
+        <main>
+          {Auth.loggedIn() ? (
+            <Header />
+          ) : (
+            <>
+            <Jumbotron />
+            <Header />
+            </>
+          )}
+          <div class="content">
+            <div class="container">
+              <Route exact path="/">
+                {Auth.loggedIn() ? (
+                  <span>Welcome back, {Auth.getUser().data.username}!</span>
+                ) : (
+                  <>
+                  </>
+                )}
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/signup">
+                <Signup />
+              </Route>
+              <Route exact path="/collection">
+                <Collection />
+              </Route>
+              {/* TODO scholarshipForm page to be added */}
+              <Route exact path="/provideScholarship">
+                <ProvideScholarship />
+              </Route> 
+              <Route exact path="/library">
+                <Library />
+              </Route>                     
+            </div>
           </div>
-          <Footer />
-        </div>
+        </main>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

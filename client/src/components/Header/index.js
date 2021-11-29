@@ -1,18 +1,48 @@
-import React from 'react';
-//import Brand from './Brand'
+import React, { useEffect } from 'react';
 import Navbar from '../Navbar';
+import '../../assets/css/style.css';
 
 
 const Header = () => {
   
+  const [ scrolled, setScrolled ] = React.useState(false);
+
+  const handleScroll=() => {
+    const offset = window.scrollY;
+
+    if (offset > 300 ) {
+      setScrolled(true);
+    }
+    else{
+      setScrolled(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll',handleScroll)
+  })
+
+  let stickyclass = ['header'];
+
+  if (scrolled) {
+    stickyclass.push('scrolled');
+  }
+
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
+
+		<header id="header" className={stickyclass.join(" ")}>
           <Navbar/>
-        </div>
-      </div>
-    </header>
+		</header>
+
+
+		// <header id="header">
+		// 	<nav className="navbar navbar-expand-sm navbar-dark">
+		// 		<div className="container-fluid">
+		// 			<a className="navbar-brand" href="#">Logo</a>
+    //       <Navibar/>
+		// 		</div>
+		// 	</nav>
+		// </header>
   );
 };
 
