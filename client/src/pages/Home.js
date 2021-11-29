@@ -8,8 +8,6 @@ import {QUERY_SCHOLARSHIPS} from '../utils/queries'
 
 const Home = () => {
 
-  console.log(Auth.loggedIn())
-
   const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
   const scholarships = data?.allScholarships || [];
   
@@ -28,6 +26,7 @@ const Home = () => {
         disability: '',
         applink: element.applink,
         appemail: element.appemail,
+        _id: element._id,
       }
       if (newScholarship.deadline===undefined || !newScholarship.deadline || newScholarship.deadline.length===0){
         newScholarship.deadline='None';

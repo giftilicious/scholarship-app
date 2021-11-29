@@ -70,7 +70,7 @@ mutation deleteScholarship($username: String!,$scholarshipId: ID!)
   } 
 }
 `;
-export const PICK_SCHOLARSHIPS = gql`
+export const PICK_SCHOLARSHIP = gql`
 mutation pickScholarship($username: String! $scholarshipId: ID!)
 {
   pickScholarship(
@@ -113,6 +113,46 @@ export const DROP_SCHOLARSHIP = gql`
 mutation dropScholarship($username: String! $scholarshipId: ID!)
 {
   dropScholarship(username: $username scholarshipId: $scholarshipId)
+  {
+    _id
+      username
+    	usertype
+      email
+      definedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+      pickedScholarships {
+        title
+        type
+        description
+        amount
+        ethnicity
+        disability
+        levelofstudy
+        gender
+        applink
+        appemail
+      }
+    }
+  }
+`;
+
+export const HANDLE_SCHOLARSHIP = gql`
+mutation handleScholarship($username: String! $scholarshipId: ID!)
+{
+  handleScholarship(
+    username: $username
+    scholarshipId: $scholarshipId
+  ) 
   {
     _id
       username

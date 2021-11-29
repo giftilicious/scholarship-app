@@ -13,10 +13,10 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     users: async () => {
-      return User.find().populate('definedScholarships');
+      return User.find().populate('definedScholarships').populate('pickedScholarships');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('definedScholarships');
+      return User.findOne({ username }).populate('definedScholarships').populate('pickedScholarships');
     },
     allScholarships: async () => {
       return Scholarship.find().sort({ createdAt: -1 });
@@ -85,6 +85,36 @@ const resolvers = {
         { username: username },
         { $pull: { pickedScholarships: scholarshipId } }
       );
+      return User.findOne({ username }).populate('pickedScholarships');
+    },
+    handleScholarship: async (parent, { username, scholarshipId }) => {
+      const userData = await User.findOne({username}).populate('pickedScholarships');
+
+      if (!userData.pickedScholarships || userData.pickedScholarships.size===0){
+        await User.findOneAndUpdate(
+          { username: username },
+          { $addToSet: { pickedScholarships: scholarshipId } }
+        );
+      } else {
+        let found = false;
+        userData.pickedScholarships.forEach((ele) =>{
+          if(ele === scholarshipId){
+           found = true;
+          }   
+        });
+        if (found){
+          await User.findOneAndUpdate(
+                  { username: username },
+                  { $pull: { pickedScholarships: scholarshipId } }
+                );
+        } else {
+          await User.findOneAndUpdate(
+            { username: username },
+            { $addToSet: { pickedScholarships: scholarshipId } }
+          );
+        }
+      }
+      
       return User.findOne({ username }).populate('pickedScholarships');
     },
   },
