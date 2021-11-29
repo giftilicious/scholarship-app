@@ -131,7 +131,7 @@ const ScholarshipForm = () => {
     try {
       
       const varObj = {
-        username: Auth.getProfile().data.username, title: title, type: type, description: description, deadline: deadline, amount: amount, ethnicity: ethnicity, disability: disability,
+        username: Auth.getUser().data.username, title: title, type: type, description: description, deadline: deadline, amount: amount, ethnicity: ethnicity, disability: disability,
         levelofstudy: levelofstudy,
         gender: gender,
         applink: applink,
