@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { DROP_SCHOLARSHIP } from '../utils/mutations'
+import { DROP_SCHOLARSHIP } from '../../utils/mutations'
 
 
 
