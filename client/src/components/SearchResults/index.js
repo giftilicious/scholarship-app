@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
+
 // import { isType } from 'graphql';
 
 
@@ -113,7 +114,7 @@ const SearchResults = () => {
         selection.type=selected;
         break;
       default:
-        console.log("Sorry, could not find what you are looking for");
+        console.log("Sorry, we could not find what you are looking for");
     }
     console.log('selection in handler', selection);
   }
@@ -351,38 +352,71 @@ const SearchResults = () => {
     <div>
       {/* Form to render the filters */}
       <form action="">
-        {/* ethnicities */}
-        <select className="filters" name="ethnicities" id="ethnicities" onChange={handleSelect} >
-          {ethnicities.map((ethnicity) => (
-            <option value={ethnicity}>{ethnicity}</option>
-          ))}
-        </select>
-        {/* disabilities */}
-        <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
-          {disabilities.map((disability) => (
-            <option value={disability}>{disability}</option>
-          ))}
-        </select>
-        {/* levels of study */}
-        <select className="filters" name="levels-of-study" id="levels" onChange={handleSelect}>
-          {levels.map((level) => (
-            <option value={level}>{level}</option>
-          ))}
-        </select>
-        {/* genders */}
-        <select className="filters" name="genders" id="genders" onChange={handleSelect}>
-          {genders.map((gender) => (
-            <option value={gender}>{gender}</option>
-          ))}
-        </select>
-        {/* types of funding */}
-        <select className="filters" name="types" id="types" onChange={handleSelect}>
-          {types.map((type) => (
-            <option value={type}>{type}</option>
-          ))}
-        </select>
-        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-        <button type="submit" className="btn btn-primary" onClick={clear}>Clear Preferences</button>
+        <div className= "container">
+          <div className="row">
+            {/* Select elements column */}
+            <div className="col-12 col-lg-9 col-xl-10 ">
+              <div className="row">
+                {/* ethnicities */}
+                <div className="col-12 col-lg-4 col-xl-1">
+                  <label for="ethnicities" id="ethnicitiesL" className= "fl-label">Ethnicity</label>
+                  <select className="filters" name="ethnicities" id="ethnicities" onChange={handleSelect} >
+                    {ethnicities.map((ethnicity) => (
+                      <option value={ethnicity}>{ethnicity}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* disabilities */}
+                <div className="col-12 col-lg-4 col-xl-3">
+                <label for="disabilities" className= "fl-label" id= "disabilitiesL">Special Needs</label>
+                  <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
+                    {disabilities.map((disability) => (
+                      <option value={disability}>{disability}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* levels of study */}
+                <div className="col-12 col-lg-4 col-xl-2">
+                <label for="levels" className= "fl-label">Level</label>
+                  <select className="filters" name="levels-of-study" id="levels" onChange={handleSelect}>
+                    {levels.map((level) => (
+                      <option value={level}>{level}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* genders */}
+                <div className="col-12 col-lg-4 col-xl-2">
+                <label for="genders" id="gendersL" className= "fl-label">Gender</label>
+                  <select className="filters" name="genders" id="genders" onChange={handleSelect}>
+                    {genders.map((gender) => (
+                      <option value={gender}>{gender}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* types of funding */}
+                <div className="col-12 col-lg-4 col-xl-2">
+                <label for="types" className= "fl-label">Funding</label>
+                  <select className="filters" name="types" id="types" onChange={handleSelect}>
+                    {types.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+            {/* Buttons column */}
+            <div className="col-12 col-lg-3 col-xl-2">
+              <div className="row">
+                  <div className="col-6">
+                    <button type="button" className="btn btn-primary" id="sbmtBtnS" onClick={handleSubmit}>Submit</button>
+                  </div>
+                  <div className="col-6">
+                    <button type="submit" className="btn btn-primary" id= "clrBtnS" onClick={clear}>Clear</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
       </form>
       {/* render results of (filtered) search */}
       <div>
