@@ -12,6 +12,7 @@ const Navibar = () => {
         event.preventDefault();
         Auth.logout();
       };
+      console.log(Auth.getUser())
 
     return (
       <>
@@ -23,8 +24,14 @@ const Navibar = () => {
               {Auth.loggedIn() ? (
                 <Nav>
                   <Link href="#" className="btn text-white" to="/">Home</Link>
-                  <Link href="#" className="btn text-white" to="/collection">Collections</Link>
-                  <Link href="#" className="btn text-white" to="/library">Library</Link>
+                  {Auth.getUser().data.usertype==='Provider' ? (
+                    <div>
+                    <Link href="#" className="btn text-white" to="/provideScholarship">Provide Scholarship</Link>
+                    <Link href="#" className="btn text-white" to="/library">Library</Link>
+                    </div>
+                  ):( 
+                    <Link href="#" className="btn text-white" to="/collection">Collection</Link>
+                  )}
                   <Dropdown>
                     <Dropdown.Toggle>
                       <img src="http://2019wcsg.ca/wp-content/uploads/2018/01/profile-placeholder.png" alt="Pfp" style={{width:'40px'}} class="rounded-pill" />
