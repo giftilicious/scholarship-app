@@ -17,7 +17,7 @@ const Signup = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+console.log(name, value)
     setFormState({
       ...formState,
       [name]: value,
@@ -60,14 +60,32 @@ const Signup = () => {
                   value={formState.name}
                   onChange={handleChange}
                 />
-                <input
+                {/* <input
                   className="form-input"
                   placeholder="Provider or student"
                   name="usertype"
                   type="text"
                   value={formState.usertype}
                   onChange={handleChange}
-                />
+                /> */}
+                        
+                          
+                           <div className="form-check form-check-inline" >
+                    <input className="form-check-input" type="radio" name="usertype" id="providerRadio" value='Provider' onChange={handleChange} />
+                    <label className="form-check-label" for="providerRadio">
+                      Provider
+                    </label>
+                    </div>
+                    
+                    <div className="form-check form-check-inline" >
+                    <input className="form-check-input" type="radio" name="usertype" id="providerRadio" value='Student' onChange={handleChange} />
+                    <label className="form-check-label" for="providerRadio">
+                      Student
+                    </label>
+                    </div>
+                            
+                   
+                  
                 <input
                   className="form-input"
                   placeholder="Your email"
