@@ -1,39 +1,19 @@
 import React from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-// import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import { DELETE_SCHOLARSHIP } from '../utils/mutations'
+import ScholarshipList from '../components/ScholarshipList'
 import Auth from '../utils/auth';
 
 const Library = () => {
-  const {loading, data} = useQuery(QUERY_ME)
+  const { data } = useQuery(QUERY_ME)
   const library = data?.me || {}
-  const [deleteScholarship, { error }] = useMutation(DELETE_SCHOLARSHIP)
-
-  // This function will handle the click event to delete the scholarship from the collection
-  const handleDeleteScholarship = async (scholarshipId) => {
-    
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const {data} = await deleteScholarship({
-        variables: {scholarshipId}
-      })
-
-      deleteScholarshipId(scholarshipId);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-//   return (
+  
+  return (
     <div>
     {Auth.loggedIn ? (
       <div>
         <ScholarshipList
-          library={collection.definedScholarships}
+          library={library.definedScholarships}
         />
       </div>
     ) : (
