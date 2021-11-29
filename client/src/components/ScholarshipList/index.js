@@ -7,7 +7,7 @@ const ScholarshipList = ({ scholarships }) => {
   }
 
   return (
-    <div>
+    <div className="row">
       {scholarships &&
         scholarships.map((scholarship) => (
           <ScholarshipCard scholarship={scholarship} key={scholarship._id}/>
