@@ -3,16 +3,15 @@ import {useQuery} from '@apollo/client';
 import SearchResults from '../components/SearchResults';
 import ScholarshipList from '../components/ScholarshipList';
 import Auth from '../utils/auth';
-// import {QUERY_SCHOLARSHIPS} from '../utils/queries'
+import {QUERY_SCHOLARSHIPS} from '../utils/queries'
 
 
 const Home = () => {
 
-  // const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
-  // const scholarships = data?.allScholarships || [];
-  const scholarships = [];
-  const loading  = null;
+  console.log(Auth.loggedIn())
 
+  const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
+  const scholarships = data?.allScholarships || [];
   
   const pScholarships = [];
   scholarships.forEach(element => {
@@ -26,7 +25,7 @@ const Home = () => {
         ethnicity: '',
         gender: '',
         levelofstudy: '',
-        disabled: '',
+        disability: '',
         applink: element.applink,
         appemail: element.appemail,
       }
@@ -72,14 +71,14 @@ const Home = () => {
         });
       }
   
-      if (element.disabled===undefined || element.disabled.length===0){
-        newScholarship.disabled='Any';
+      if (element.disability===undefined || element.disability.length===0){
+        newScholarship.disability='Any';
       } else {
-        element.disabled.forEach(eth => {
-          if (newScholarship.disabled.length>0){
-            newScholarship.disabled = newScholarship.disabled + ', ';
+        element.disability.forEach(eth => {
+          if (newScholarship.disability.length>0){
+            newScholarship.disability = newScholarship.disability + ', ';
           }
-          newScholarship.disabled = newScholarship.disabled + eth;
+          newScholarship.disability = newScholarship.disability + eth;
         });
       }
   
@@ -102,7 +101,7 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
-          {Auth.loggedIn ? (
+          {Auth.loggedIn() ? (
             <div>
               <SearchResults/>         
             </div>
