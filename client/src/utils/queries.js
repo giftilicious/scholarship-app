@@ -19,6 +19,7 @@ query user($username: String!) {
       gender
       applink
       appemail
+      deadline
     }
     pickedScholarships{
       _id
@@ -32,6 +33,7 @@ query user($username: String!) {
       gender
       applink
       appemail
+      deadline
     }
   }
 }
@@ -55,6 +57,7 @@ query me($username: String!) {
       gender
       applink
       appemail
+      deadline
     }
     pickedScholarships{
       _id
@@ -68,6 +71,7 @@ query me($username: String!) {
       gender
       applink
       appemail
+      deadline
     }
   }
 }
@@ -110,6 +114,7 @@ query users {
       gender
       applink
       appemail
+      deadline
     }
     pickedScholarships{
       _id
@@ -123,6 +128,7 @@ query users {
       gender
       applink
       appemail
+      deadline
     }
   }
 }
