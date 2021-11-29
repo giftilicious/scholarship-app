@@ -204,6 +204,7 @@ const ScholarshipForm = () => {
   };
 
   const handleChange = (event) => {
+    console.log(Auth.getUser().data)
     const { name, value } = event.target;
 
     if (name === 'description' && value.length <= 280) {
