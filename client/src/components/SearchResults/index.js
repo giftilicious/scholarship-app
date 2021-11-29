@@ -293,12 +293,9 @@ const SearchResults = () => {
         </div>
       </form>
       {/* render results of (filtered) search */}
-      <Row xs={12}>
+      <Row xs={1} md={2} lg={4}>
         {pScholarships.map((scholarship) => (
-           
           <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
-          
-
         ))}
       </Row>
     </Container>
