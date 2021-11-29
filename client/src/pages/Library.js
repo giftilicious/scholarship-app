@@ -9,8 +9,7 @@ import Auth from '../utils/auth';
 
 
 const Library = () => {
-  
-  console.log(Auth.getUser().data.username)
+
   const {loading, data} = useQuery(QUERY_USER
     ,{
     variables: { username: Auth.getUser().data.username },
@@ -19,6 +18,8 @@ const Library = () => {
 
   // 'library' will pass through the return statement below when authenticating user
   const library = data?.user || {}
+
+  console.log(library)
 
   const [deleteScholarship, { error }] = useMutation(DELETE_SCHOLARSHIP)
 
@@ -69,6 +70,7 @@ const Library = () => {
                   <Card.Title>{scholarship.title}</Card.Title>
                   <p >Amount: ${scholarship.amount}</p>
                   <Card.Text>{scholarship.description}</Card.Text>
+                  <Card.Text>Deadline: {scholarship.deadline}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteScholarship(scholarship._id)}>
                     Delete Scholarship
                   </Button>

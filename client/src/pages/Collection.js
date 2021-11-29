@@ -63,10 +63,11 @@ const Collection = () => {
                 {scholarship.image ? <Card.Img src={scholarship.image} alt={`The image for ${scholarship.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{scholarship.title}</Card.Title>
-                  <p className='small'>Awards: {scholarship.title}</p>
+                  <p >Amount: ${scholarship.amount}</p>
                   <Card.Text>{scholarship.description}</Card.Text>
+                  <Card.Text>Deadline: {scholarship.deadline}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDropScholarship(scholarship._id)}>
-                    Delete this Award!
+                    Drop this scholarship
                   </Button>
                 </Card.Body>
               </Card>
