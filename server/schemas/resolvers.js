@@ -4,10 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (parent, args,context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
-        const userData= await User.findOne({ _id: context.user._id })
-        .select('-__v -password');
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password');
         return userData;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -49,11 +49,9 @@ const resolvers = {
 
       return { token, user };
     },
-    addScholarship: async (parent, { username, title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail}) => {
-      console.log(username)
-      console.log(title)
-   
-      const scholarship = await Scholarship.create({ title, type, description, deadline, amount, ethnicity, disability,levelofstudy, gender, applink, appemail});
+    addScholarship: async (parent, { username, title, type, description, deadline, amount, ethnicity, disability, levelofstudy, gender, applink, appemail }) => {
+
+      const scholarship = await Scholarship.create({ title, type, description, deadline, amount, ethnicity, disability, levelofstudy, gender, applink, appemail });
 
       await User.findOneAndUpdate(
         { username: username },
@@ -63,15 +61,14 @@ const resolvers = {
       return scholarship;
     },
     deleteScholarship: async (parent, { username, scholarshipId }) => {
-      console.log(scholarshipId);
       await User.findOneAndUpdate(
         { username: username },
         { $pull: { definedScholarships: scholarshipId } }
       );
       return Scholarship.findOneAndDelete({ _id: scholarshipId });
     },
-    pickScholarship: async (parent, { username, scholarshipId}) => {
-  
+    pickScholarship: async (parent, { username, scholarshipId }) => {
+
       await User.findOneAndUpdate(
         { username: username },
         { $addToSet: { pickedScholarships: scholarshipId } }
@@ -80,7 +77,6 @@ const resolvers = {
       return User.findOne({ username }).populate('pickedScholarships');
     },
     dropScholarship: async (parent, { username, scholarshipId }) => {
-      console.log(scholarshipId);
       await User.findOneAndUpdate(
         { username: username },
         { $pull: { pickedScholarships: scholarshipId } }
@@ -88,25 +84,24 @@ const resolvers = {
       return User.findOne({ username }).populate('pickedScholarships');
     },
     handleScholarship: async (parent, { username, scholarshipId }) => {
-      const userData = await User.findOne({username}).populate('pickedScholarships');
-
-      if (!userData.pickedScholarships || userData.pickedScholarships.size===0){
+      const userData = await User.findOne({ username }).populate('pickedScholarships');
+      if (!userData.pickedScholarships || userData.pickedScholarships.size === 0) {
         await User.findOneAndUpdate(
           { username: username },
           { $addToSet: { pickedScholarships: scholarshipId } }
         );
       } else {
         let found = false;
-        userData.pickedScholarships.forEach((ele) =>{
-          if(ele === scholarshipId){
-           found = true;
-          }   
+        userData.pickedScholarships.forEach((ele) => {
+          if (ele._id == scholarshipId) {
+            found = true;
+          }
         });
-        if (found){
+        if (found) {
           await User.findOneAndUpdate(
-                  { username: username },
-                  { $pull: { pickedScholarships: scholarshipId } }
-                );
+            { username: username },
+            { $pull: { pickedScholarships: scholarshipId } }
+          );
         } else {
           await User.findOneAndUpdate(
             { username: username },
@@ -114,7 +109,7 @@ const resolvers = {
           );
         }
       }
-      
+
       return User.findOne({ username }).populate('pickedScholarships');
     },
   },
