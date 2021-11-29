@@ -3,16 +3,20 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
+import { isType } from 'graphql';
 
 
 const filterScholarship = (element, filter) => {
+  // if element.ethnicity array has values
   if (!(element.ethnicity === undefined || element.ethnicity.length === 0) && (filter.ethnicity && filter.ethnicity.length > 0)) {
     let found = false;
+      // check if one of the ethnicity values equals that of the filter
     element.ethnicity.forEach(ele => {
       if (ele === filter.ethnicity) {
         found = true;
       }
     });
+
     if (!found) {
       return true;
     }
@@ -126,9 +130,72 @@ const SearchResults = () => {
   
   // console.log('pScholarships instantiation',pScholarships);
   
-  const updateList = () =>{
-    //Array to hold filteredResults
-    const filteredResults = [];
+  const handleSubmit = () =>{
+    //Arrays to hold successive filters
+    let byEthnicity = [];
+    let byDisability = [];
+    let byGender = [];
+    let byLevel = [];
+    let final = [];
+
+    // Functions to implement filter tests
+   function isEthnicity (element, selection){
+     let found;
+     element.ethnicity.forEach((eth) =>{
+       if(eth === selection.ethinicity){
+        found = true;
+       }
+       found = false;
+     })
+     
+
+   };
+   function isDisability (){};
+   function isGender (){};
+   function isLevel (){};
+   function isOfType (){};
+   
+
+    // The following filters are applied successively to avoid nesting of conditionals. 
+    // They will be implemented sequentially each time the submit button is clicked.
+    // First, if ethnicity has been selected, it will filter into 'byEthnicity' array.
+    // if no ethnicity has been selected, 'byEthnicity' will contain  all scholarships that were in the 'scholarship' array
+    if (ethnicity !== ''){
+      byEthnicity = scholarships.filter(isEthnicity);
+    }else{
+      byEthnicity = scholarships;
+    }
+    // Second Filter: Disability
+    if (disability !== ''){
+      byDisability = byEthnicity.filter(isDisability);
+    }else{
+      byDisability = byEthnicity;
+    }
+    // Third
+    if (gender !== ''){
+      byGender = byDisability.filter(isGender);
+    }else{
+      byGender = byDisability;
+    }
+    // Fourth
+    if (level !== ''){
+      byLevel = byGender.filter(isLevel);
+    }else{
+      byLevel = byGender;
+    }
+    // Final Filter: Type
+    if (type !== ''){
+      final = byLevel.filter(isOfType);
+    }else{
+      final = byLevel;
+    }
+    setpScholarships(final);
+
+    
+    
+
+    
+  
 
   scholarships.forEach(element => {
     if (filterScholarship(element, selection)) {
@@ -210,7 +277,7 @@ const SearchResults = () => {
   console.log("filtered Results", filteredResults);
   // after finalizing 'for each' loop
   //pass container array (filteredResults) into tracked state pScholarships.
-   setpScholarships([filteredResults]);
+   setpScholarships(filteredResults);
 
   }
 
@@ -270,7 +337,7 @@ const SearchResults = () => {
             <option value={type}>{type}</option>
           ))}
         </select>
-        <button type="button" className="btn btn-primary" onClick={updateList}>Submit</button>
+        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
         <button type="submit" className="btn btn-primary" onClick={clear}>Clear Preferences</button>
       </form>
       {/* render results of (filtered) search */}
