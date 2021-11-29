@@ -10,6 +10,22 @@ const ProvideScholarship = () => {
           style={{ border: '1px dotted #1a1a1a' }}
         >
           <ScholarshipForm />
+
+
+          <form className="styled-form row">
+            <div className="form-field col-lg-12">
+              <input id="name" className="input-text" type="text" required />
+              <label className="label" for="name">Name</label>
+            </div>
+            <div className="form-field col-lg-12">
+              <input id="email" className="input-text" type="email" required />
+              <label className="label" for="email">E-mail</label>
+            </div>
+            <div className="form-field col-lg-12">
+              <input className="submit-btn" type="submit" value="Submit" />
+            </div>
+          </form>
+
         </div>
       </div>
     </main>
