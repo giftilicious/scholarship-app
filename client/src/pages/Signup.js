@@ -51,6 +51,20 @@ console.log(name, value)
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              <>
+          <form className="styled-form row">
+            <div className="form-field col-lg-12">
+              <input id="name" className="input-text" type="text" required />
+              <label className="label" for="name">Name</label>
+            </div>
+            <div className="form-field col-lg-12">
+              <input id="email" className="input-text" type="email" required />
+              <label className="label" for="email">E-mail</label>
+            </div>
+            <div className="form-field col-lg-12">
+              <input className="submit-btn" type="submit" value="Submit" />
+            </div>
+          </form>
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -110,6 +124,7 @@ console.log(name, value)
                   Submit
                 </button>
               </form>
+              </>
             )}
 
             {error && (

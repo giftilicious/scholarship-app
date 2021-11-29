@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Navbar from '../Navbar';
+import Auth from '../../utils/auth';
 import '../../assets/css/style.css';
 
 
@@ -7,19 +8,19 @@ const Header = () => {
   
   const [ scrolled, setScrolled ] = React.useState(false);
 
-  const handleScroll=() => {
+  const handleScroll = () => {
     const offset = window.scrollY;
 
     if (offset > 300 ) {
       setScrolled(true);
     }
-    else{
+    else {
       setScrolled(false);
     }
   }
 
   useEffect(() => {
-    window.addEventListener('scroll',handleScroll)
+    window.addEventListener('scroll', handleScroll)
   })
 
   let stickyclass = ['header'];

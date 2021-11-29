@@ -23,14 +23,14 @@ const Navibar = () => {
             <Navbar.Collapse id="navbar-dark-example" className="justify-content-end">
               {Auth.loggedIn() ? (
                 <Nav>
-                  <Link href="#" className="btn text-white" to="/">Home</Link>
+                  <Link href="#" className="btn" to="/">Home</Link>
                   {Auth.getUser().data.usertype==='Provider' ? (
-                    <div>
-                    <Link href="#" className="btn text-white" to="/provideScholarship">Provide Scholarship</Link>
-                    <Link href="#" className="btn text-white" to="/library">Library</Link>
-                    </div>
+                    <>
+                    <Link href="#" className="btn" to="/provideScholarship">Provide Scholarship</Link>
+                    <Link href="#" className="btn" to="/library">Library</Link>
+                    </>
                   ):( 
-                    <Link href="#" className="btn text-white" to="/collection">Collection</Link>
+                    <Link href="#" className="btn" to="/collection">Collection</Link>
                   )}
                   <Dropdown>
                     <Dropdown.Toggle>
@@ -45,8 +45,8 @@ const Navibar = () => {
                 </Nav>
               ) : (
                 <Nav>
-                  <Link href="#" className="btn text-white" to="/signup">Sign up</Link>
-                  <Link href="#" className="btn text-white" to="/login">Log in</Link>
+                  <Link href="#" className="btn" to="/signup">Sign up</Link>
+                  <Link href="#" className="btn" to="/login">Log in</Link>
                 </Nav>
               )}
             </Navbar.Collapse>
