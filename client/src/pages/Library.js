@@ -57,7 +57,9 @@ const Library = () => {
     <>
       <div fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing your library</h1>
+          <h1>Welcome to your Library</h1>
+          <p>Please see the list of awards you provide below.</p>
+          <p className='fst-italic'>Important: Please remember to delete any awards with expired deadlines.</p>
         </Container>
       </div>
       <Container>
