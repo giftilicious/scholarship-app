@@ -291,7 +291,7 @@ const SearchResults = () => {
         </div>
       </form>
       {/* render results of (filtered) search */}
-      <div>
+      <div className="row">
         {/* {console.log(pScholarships)} */}
         {pScholarships.map((scholarship) => (
           // console.log('working')

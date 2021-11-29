@@ -4,6 +4,11 @@ import { PICK_SCHOLARSHIP, DROP_SCHOLARSHIP } from '../../utils/mutations'
 import Auth from '../../utils/auth';
 import '../../assets/css/style.css';
 
+const styles = {
+  btnBorder: {
+    border: '1px outset #519DD9',
+  }
+}
 
 const ScholarshipCard = ({ scholarship }) => {
 
@@ -76,12 +81,12 @@ const ScholarshipCard = ({ scholarship }) => {
                 {Auth.getUser().data.usertype==='Provider' ? ( 
                   <div className="btn-group w-100">
                     {(scholarship.applink && scholarship.applink.length>0) ? (
-                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill">Visit Website</a>
+                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Visit Website</a>
                     ):( 
                       <div></div>
                     )}
                     {(scholarship.appemail && scholarship.appemail.length>0) ? (
-                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill">Email Insitution</a>
+                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Email Insitution</a>
                     ):( 
                       <div></div>
                     )}
@@ -89,16 +94,16 @@ const ScholarshipCard = ({ scholarship }) => {
                 ):(
                   <div className="btn-group w-100">
                     {(scholarship.applink && scholarship.applink.length>0) ? (
-                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill">Visit Website</a>
+                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Visit Website</a>
                     ):( 
                       <div></div>
                     )}
                     {(scholarship.appemail && scholarship.appemail.length>0) ? (
-                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill">Email Insitution</a>
+                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Email Insitution</a>
                     ):( 
                       <div></div>
                     )}
-                    <a href={scholarship.applink} className="btn btn-sm btn-outline-fill">Apply</a>
+                    <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Apply</a>
                   </div>
                  )}
             </div>

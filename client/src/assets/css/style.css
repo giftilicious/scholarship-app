@@ -28,11 +28,6 @@ header {
   left: 0;
 }
 
-.jumbotron ~ .header.scrolled .navbar .navbar-brand,
-.jumbotron ~ .header.scrolled .navbar .btn {
- visibility: visible;
-}
-
 body {
 	background-color: var(--bg-color);
   min-height: 100vh
@@ -78,20 +73,33 @@ h1, h2, h3, h4, h5, h6 {
  visibility: hidden;
 }
 
+.jumbotron ~ .header.scrolled .navbar .navbar-brand,
+.jumbotron ~ .header.scrolled .navbar .btn {
+ visibility: visible;
+}
+
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
 }
 
-.navbar-nav a {
+.navbar-nav .btn {
   color: #fff;
 }
 
-.navbar-nav a:hover {
+.navbar-nav .btn:hover {
   background-color: transparent;
   color: #0f87e2;
   text-decoration: none;
+}
 
+.navbar-nav .dropdown button,
+.navbar-nav .dropdown button:hover,
+.navbar-nav .dropdown button:active,
+.navbar-nav .dropdown button:focus {
+  background-color: transparent;
+  border: transparent;
+  outline: none;
 }
 
 .content {
