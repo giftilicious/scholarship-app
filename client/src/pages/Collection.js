@@ -48,14 +48,16 @@ const Collection = () => {
 
   return (
     <>
-      <div></div>
       <div fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing your collection</h1>
+          <h4>Hey, welcome to your Collections page</h4>
+          <br></br>
+          <p>View all the awards you’ve chosen below. You can apply to the awards you want or delete the ones you don’t. Easy peasy!</p>
+          <p className='fst-italic'>Note: To remove an award from your list, just unclick the star.</p>
         </Container>
       </div>
       <Container>
-
+      
         <Container>
           {collection.pickedScholarships.map((scholarship) => {
             return (
