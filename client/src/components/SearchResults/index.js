@@ -65,7 +65,7 @@ import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
 
 const SearchResults = () => {
   // Arrays for storing filter options
-  const ethnicities = ["", "Black", "Indigeneous", "Asian"];
+  const ethnicities = ["", "Black", "Indigenous", "Asian"];
   const disabilities = ["", "Physical Disability", "Intellectual Disability", "Learning Disability"];
   const genders = ["", "Female", "Male", "Gender Diverse"];
   const levels = ["", "High School", "Post-Secondary"];
@@ -145,7 +145,7 @@ const SearchResults = () => {
      return function (element){
        let found=false;
       element.ethnicity.forEach((eth) =>{
-        if(eth === selection.ethinicity){
+        if(eth === selection.ethnicity){
          found = true;
         }   
       });
@@ -183,7 +183,7 @@ const SearchResults = () => {
    function isLevel (selection){
     return function (element){
       let found=false;
-     element.level.forEach((lev) =>{
+     element.levelofstudy.forEach((lev) =>{
        if(lev === selection.level){
         found = true;
        }   
