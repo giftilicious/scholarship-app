@@ -1,42 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { HANDLE_SCHOLARSHIP } from '../../utils/mutations'
+import { PICK_SCHOLARSHIP, DROP_SCHOLARSHIP } from '../../utils/mutations'
 import Auth from '../../utils/auth';
+import '../../assets/css/style.css';
 
+const styles = {
+  btnBorder: {
+    border: '1px outset #519DD9',
+    "&:hover": {
+      textDecoration: 'none',
+    }
+  }
+}
 
 const ScholarshipCard = ({ scholarship }) => {
 
-  const [handleScholarship, { error }] = useMutation(HANDLE_SCHOLARSHIP)
+  const [starIcon, setStarIcon] = useState('far fa-star fa-lg	favourite-icon');
+
+  const [pickScholarship, { error }] = useMutation(PICK_SCHOLARSHIP)
+  const [dropScholarship, { error2 }] = useMutation(DROP_SCHOLARSHIP)
   
   const handlePickScholarship = async (e) => {
     console.log(scholarship);
     console.log(Auth.getUser().data.username);
 
-    try {
-      const {data} = await handleScholarship({
-        variables: { username:Auth.getUser().data.username,scholarshipId: scholarship._id }
-      })
-    console.log(data);
-
-    } catch (err) {
-      console.error(err);
+    if (starIcon==='far fa-star fa-lg	favourite-icon'){
+      setStarIcon('fas fa-star fa-lg	favourite-icon')
+      try {
+        const {data} = await pickScholarship({
+          variables: { username:Auth.getUser().data.username,scholarshipId: scholarship._id }
+        })
+  
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      setStarIcon('far fa-star fa-lg	favourite-icon')
+      try {
+        const {data} = await dropScholarship({
+          variables: { username:Auth.getUser().data.username,scholarshipId: scholarship._id }
+        })
+  
+      } catch (err) {
+        console.error(err);
+      }
     }
+
+    
   };
 
   return (
-    <div className="col" key={scholarship._id}>
+    <div className="col mt-2 mb-2" key={scholarship._id}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-      <div className="card shadow-sm">
-      {Auth.loggedIn() ? (
-            <div className="card-img-top">
+      <div className="card h-100 shadow-sm">
+      {(Auth.loggedIn() && Auth.getUser().data.usertype==='Student') ? (
+          <div className="card-img-top">
             <div className="d-flex justify-content-end p-4">
-              <i className="far fa-star fa-lg	favourite-icon" id={scholarship._id} onClick={(e) => handlePickScholarship(e)}></i>
+              <i className={starIcon} id={scholarship._id} onClick={(e) => handlePickScholarship(e)}></i>
             </div>
           </div>
           ) : (
-              <div>
-
-              </div>
+              <>
+              </>
           )}
         
         <div className="card-body">
@@ -49,17 +74,38 @@ const ScholarshipCard = ({ scholarship }) => {
           <p className="card-text">Level of Study: {scholarship.levelofstudy}</p>
           <p className="card-text">Application deadline: {scholarship.deadline}</p>
           <p className="card-text">{scholarship.description}</p>
-          <a href={scholarship.applink} className="card-link">Apply</a>
-          <a href={"mailto:" + scholarship.appemail} className="card-link">Email us</a>
         </div>
         {Auth.loggedIn() ? (
-            <div className="card-footer">
+          <div className="card-footer">
             <div className="d-flex align-items-center">
-              <div className="btn-group w-100">
-                <button type="button" className="btn btn-sm btn-outline-fill" onClick={handlePickScholarship}>Pick</button>
-                <button type="button" className="btn btn-sm btn-outline-fill">E-mail</button>
-                <button type="button" className="btn btn-sm btn-outline-fill">Apply</button>
-              </div>
+                {Auth.getUser().data.usertype==='Provider' ? ( 
+                  <div className="btn-group w-100">
+                    {(scholarship.applink && scholarship.applink.length>0) ? (
+                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Visit Website</a>
+                    ):( 
+                      <div></div>
+                    )}
+                    {(scholarship.appemail && scholarship.appemail.length>0) ? (
+                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Email Insitution</a>
+                    ):( 
+                      <div></div>
+                    )}
+                  </div>
+                ):(
+                  <div className="btn-group w-100">
+                    {(scholarship.applink && scholarship.applink.length>0) ? (
+                      <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Visit Website</a>
+                    ):( 
+                      <div></div>
+                    )}
+                    {(scholarship.appemail && scholarship.appemail.length>0) ? (
+                      <a href={"mailto:" + scholarship.appemail} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Email Insitution</a>
+                    ):( 
+                      <div></div>
+                    )}
+                    <a href={scholarship.applink} className="btn btn-sm btn-outline-fill" style={styles.btnBorder}>Apply</a>
+                  </div>
+                 )}
             </div>
           </div>
           ) : (

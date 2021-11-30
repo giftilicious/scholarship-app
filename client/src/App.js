@@ -57,7 +57,7 @@ function App() {
             </>
           )}
           <div class="content">
-            <div class="container">
+            <div class="container-fluid">
               <Route exact path="/">
                 {Auth.loggedIn() ? (
                   <span>Welcome back, {Auth.getUser().data.username}!</span>

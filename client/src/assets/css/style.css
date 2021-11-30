@@ -17,8 +17,20 @@ header {
 	color: #fff
 }
 
+.header {
+  width: 100%;
+  max-width: 100%;
+}
+
+.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 body {
-	background-color: var(--bg-color)
+	background-color: var(--bg-color);
+  min-height: 100vh
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,24 +68,43 @@ h1, h2, h3, h4, h5, h6 {
 	color: #FFF;
 }
 
+.jumbotron ~ .header .navbar .navbar-brand,
+.jumbotron ~ .header .navbar .btn {
+ visibility: hidden;
+}
+
+.jumbotron ~ .header.scrolled .navbar .navbar-brand,
+.jumbotron ~ .header.scrolled .navbar .btn {
+ visibility: visible;
+}
+
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.navbar-nav .btn {
+  color: #fff;
 }
 
-.sticky + .content {
-  padding-top: 122px;
+.navbar-nav .btn:hover {
+  background-color: transparent;
+  color: #0f87e2;
+  text-decoration: none;
+}
+
+.navbar-nav .dropdown button,
+.navbar-nav .dropdown button:hover,
+.navbar-nav .dropdown button:active,
+.navbar-nav .dropdown button:focus {
+  background-color: transparent;
+  border: transparent;
+  outline: none;
 }
 
 .content {
-	padding-top: 72px;
-	padding-bottom: 72px
+	padding-top: 2.4rem;
+	padding-bottom: 2.4rem
 }
 
 .btn-container {
@@ -99,6 +130,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-slick:hover {
   box-shadow: 1px 1px 25px 10px rgba(145, 177, 212, 0.6);
 	color: #f4f4f4;
+  text-decoration: none;
 }
 
 .btn-slick:before {
@@ -121,19 +153,19 @@ h1, h2, h3, h4, h5, h6 {
   left: 100%;
 }
 
-.btn-outline-fill {
+.btn-group .btn-outline-fill {
   border: 1px outset #519DD9;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
   overflow: hidden;
 }
 
-.btn-outline-fill:after {
+.btn-group .btn-outline-fill:after {
   position: absolute;
   content: " ";
   top: 0;
@@ -145,10 +177,11 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-transform: scale(.1);
   transform: scale(.1);
 }
-.btn-outline-fill:hover {
+.btn-group .btn-outline-fill:hover {
   color: #fff;
+  font-weight: bold;
 }
-.btn-outline-fill:hover:after {
+.btn-group .btn-outline-fill:hover:after {
 	background: rgb(103,180,255);
 	background: linear-gradient(173deg, rgba(103,180,255,1) 0%, rgba(33,109,182,1) 100%);
   -webkit-transform: scale(1);
@@ -174,83 +207,42 @@ h1, h2, h3, h4, h5, h6 {
 	color: goldenrod
 }
 
-
-
-
-
-
-
-
-
-
-.get-in-touch {
-  max-width: 800px;
-  margin: 50px auto;
-  position: relative;
-
-}
-
-.contact-form .form-field {
+.styled-form .form-field {
   position: relative;
   margin: 32px 0;
 }
-.contact-form .input-text {
+.styled-form .input-text {
   display: block;
   width: 100%;
   height: 36px;
   border-width: 0 0 2px 0;
-  border-color: #5543ca;
+  border-color: #519DD9;
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
 }
-.contact-form .input-text:focus {
+.styled-form .input-text:focus {
   outline: none;
 }
-.contact-form .input-text:focus + .label,
-.contact-form .input-text.not-empty + .label {
+.styled-form .input-text:focus + .label,
+.styled-form .input-text.not-empty + .label {
   -webkit-transform: translateY(-24px);
           transform: translateY(-24px);
 }
-.contact-form .label {
+.styled-form .label {
   position: absolute;
   left: 20px;
   bottom: 11px;
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
-  color: #5543ca;
+  color: #519DD9;
   cursor: text;
   transition: -webkit-transform .2s ease-in-out;
   transition: transform .2s ease-in-out;
   transition: transform .2s ease-in-out, 
   -webkit-transform .2s ease-in-out;
 }
-.contact-form .submit-btn {
-  display: inline-block;
-  background-color: #000;
-   background-image: linear-gradient(125deg,#a72879,#064497);
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 16px;
-  padding: 8px 16px;
-  border: none;
-  width:200px;
-  cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 footer {
 	background-color: var(--footer-color);

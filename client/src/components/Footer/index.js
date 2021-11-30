@@ -12,17 +12,9 @@ const Footer = () => {
 				<a href="#">Back to top</a>
 			</p>
 			<p class="mb-0">  
-        <h4>Made with{' '}
-        <span
-          className="emoji"
-          role="img"
-          aria-label="heart"
-          aria-hidden="false"
-        >
-          ❤️
-        </span>{' '}
-        by the Tech Thoughts team.
-        </h4>
+      <p>
+        © 2021 Dollars 4 Scholars
+      </p>
         {location.pathname !== '/' && (
           <button
             className="btn btn-dark mb-3"
