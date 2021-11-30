@@ -57,7 +57,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
+  font-family: Arial, Helvetica, sans-serif;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -81,7 +81,7 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  text-decoration: underline dotted;
+  text-decoration: underline solid;
   /* 2 */
 }
 
@@ -369,7 +369,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }

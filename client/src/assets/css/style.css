@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 36px;
   border-width: 0 0 2px 0;
-  border-color: #519DD9;
+  border-color: #414141;
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
@@ -240,7 +240,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 18px;
   line-height: 26px;
   font-weight: 400;
-  color: #519DD9;
+  color: #414141;
   cursor: text;
   transition: -webkit-transform .2s ease-in-out;
   transition: transform .2s ease-in-out;
