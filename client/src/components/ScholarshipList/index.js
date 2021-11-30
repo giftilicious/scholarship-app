@@ -1,5 +1,7 @@
 import React from 'react';
 import ScholarshipCard from '../ScholarshipCard';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 const ScholarshipList = ({ scholarships }) => {
   if (!scholarships.length) {
@@ -7,12 +9,12 @@ const ScholarshipList = ({ scholarships }) => {
   }
 
   return (
-    <div className="row">
+    <Row xs={1} md={2} lg={4}>
       {scholarships &&
         scholarships.map((scholarship) => (
           <ScholarshipCard scholarship={scholarship} key={scholarship._id}/>
         ))}
-    </div>
+    </Row>
   );
 };
 
