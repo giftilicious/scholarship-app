@@ -6,14 +6,14 @@ import '../../assets/css/style.css'
 const Jumbotron = () => {
   
   return (
-  <section class="jumbotron py-5 text-center container-fluid">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="text-white">Dollars4Scholars</h1>
-        <p class="lead text-white">Mission, Vision, and Values</p>
-          <div class="btn-container">
-            <Link href="#" class="btn-slick" to="/signup">Sign up</Link>
-            <Link href="#" class="btn-slick" to="/login">Log in</Link>
+  <section className="jumbotron py-5 text-center container-fluid">
+    <div className="row py-lg-5">
+      <div className="col-lg-6 col-md-8 mx-auto">
+        <h1 className="text-white">Dollars4Scholars</h1>
+        <p className="lead text-white">Dollars 4 Scholars makes the process of finding money to pay for school easier. We specialize in funding for all communities. Search through our selection of awards for Black, Indigenous, Asian, LGBTQ+ and so many more.</p>
+          <div className="btn-container">
+            <Link href="#" className="btn-slick" to="/signup">Sign up</Link>
+            <Link href="#" className="btn-slick" to="/login">Log in</Link>
           </div>
       </div>
     </div>

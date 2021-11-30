@@ -2,8 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
 
 const SearchResults = () => {
@@ -240,87 +244,129 @@ const SearchResults = () => {
   return (
     <Container fluid>
       {/* Form to render the filters */}
-      <form action="">
-        <div className= "container">
-          <div className="row">
-            {/* Select elements column */}
-            <div className="col-12 col-lg-9 col-xl-10 ">
-              <div className="row">
-                {/* ethnicities */}
-                <div className="col-12 col-lg-4 col-xl-1">
-                  <label htmlFor="ethnicities" id="ethnicitiesL" className= "fl-label">Ethnicity</label>
-                  <select className="filters" name="ethnicities" id="ethnicities" onChange={handleSelect} >
-                    {ethnicities.map((ethnicity, i) => (
-                      <option key={i} value={ethnicity}>{ethnicity}</option>
-                    ))}
-                  </select>
-                </div>
-                {/* disabilities */}
-                <div className="col-12 col-lg-4 col-xl-3">
-                <label htmlFor="disabilities" className= "fl-label" id= "disabilitiesL">Special Needs</label>
-                  <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
-                    {disabilities.map((disability, i) => (
-                      <option key={i} value={disability}>{disability}</option>
-                    ))}
-                  </select>
-                </div>
-                {/* levels of study */}
-                <div className="col-12 col-lg-4 col-xl-2">
-                <label htmlFor="levels" className= "fl-label">Level</label>
-                  <select className="filters" name="levels-of-study" id="levels" onChange={handleSelect}>
-                    {levels.map((level, i) => (
-                      <option key={i} value={level}>{level}</option>
-                    ))}
-                  </select>
-                </div>
-                {/* genders */}
-                <div className="col-12 col-lg-4 col-xl-2">
-                <label htmlFor="genders" id="gendersL" className= "fl-label">Gender</label>
-                  <select className="filters" name="genders" id="genders" onChange={handleSelect}>
-                    {genders.map((gender, i) => (
-                      <option key={i} value={gender}>{gender}</option>
-                    ))}
-                  </select>
-                </div>
-                {/* types of funding */}
-                <div className="col-12 col-lg-4 col-xl-2">
-                <label htmlFor="types" className= "fl-label">Funding</label>
-                  <select className="filters" name="types" id="types" onChange={handleSelect}>
-                    {types.map((type, i) => (
-                      <option key={i} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-            {/* Buttons column */}
-            <div className="col-12 col-lg-3 col-xl-2">
-              <div className="row">
-                  <div className="col-6">
-                    <button type="button" className="btn btn-primary" id="sbmtBtnS" onClick={handleSubmit}>Submit</button>
-                  </div>
-                  <div className="col-6">
-                    <button type="submit" className="btn btn-primary" id= "clrBtnS" onClick={clear}>Clear</button>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </form>
-      {/* render results of (filtered) search */}
+      <Form.Floating>
+        <Row sm={6}>
+          <Col>
+            <FloatingLabel controlId="ethnicities" label="Ethnicity">
+              <Form.Select name="ethnicities" id="ethnicities" aria-label="Filter Scholarships by Ethnicity" onChange={handleSelect}>
+                {ethnicities.map((ethnicity, i) => (
+                  <option key={i} value={ethnicity}>{ethnicity}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+          <Col>
+            <FloatingLabel controlId="disabilities" label="Special Needs">
+              <Form.Select name="disabilities" id="disabilities" aria-label="Filter Scholarships by Disability" onChange={handleSelect}>
+                {disabilities.map((disability, i) => (
+                  <option key={i} value={disability}>{disability}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+          <Col>
+            <FloatingLabel controlId="levels" label="Education">
+              <Form.Select name="levels-of-study" id="levels" aria-label="Filter Scholarships by Level of Education" onChange={handleSelect}>
+                {levels.map((level, i) => (
+                          <option key={i} value={level}>{level}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+          <Col>
+            <FloatingLabel controlId="genders" label="Gender">
+              <Form.Select name="genders" id="genders" aria-label="Filter Scholarships by Gender" onChange={handleSelect}>
+                {genders.map((gender, i) => (
+                  <option key={i} value={gender}>{gender}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+          <Col>
+            <FloatingLabel controlId="types" label="Funding">
+              <Form.Select name="types" id="types" aria-label="Filter Scholarships by Funding Type" onChange={handleSelect}>
+                {types.map((type, i) => (
+                  <option key={i} value={type}>{type}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+        </Row>
 
-    <Row xs={1} md={2} lg={4}>
+        <Button variant="primary" type="button" id="sbmtBtnS" onClick={handleSubmit}>Submit</Button>
+        <Button variant="primary" type="submit" id="clrBtnS" onClick={clear}>Clear</Button>
+      </Form.Floating>
 
-        {/* {console.log(pScholarships)} */}
+      <Row xs={1} md={2} lg={4}>
         {filteredSc.length > 0 && filteredSc.map((scholarship) => {
-
-          // console.log('working')
-           console.log(scholarship._id);
+          console.log(scholarship._id);
          return <ScholarshipCard key={scholarship._id} scholarship={scholarship} />       
         })}
-       </Row>
+      </Row>
     </Container>
    )
 }
 
 export default SearchResults;
+
+// <div className= "container">
+// <div className="row">
+
+//   <div className="col-12 col-lg-9 col-xl-10 ">
+//     <div className="row">
+//       <div className="col-12 col-lg-4 col-xl-1">
+//         <label htmlFor="ethnicities" id="ethnicitiesL" className= "fl-label">Ethnicity</label>
+//         <select name="ethnicities" id="ethnicities" onChange={handleSelect} >
+//           {ethnicities.map((ethnicity, i) => (
+//             <option key={i} value={ethnicity}>{ethnicity}</option>
+//           ))}
+//         </select>
+//       </div>
+//       <div className="col-12 col-lg-4 col-xl-3">
+//       <label htmlFor="disabilities" className= "fl-label" id= "disabilitiesL">Special Needs</label>
+//         <select name="disabilities" id="disabilities" onChange={handleSelect}>
+//           {disabilities.map((disability, i) => (
+//             <option key={i} value={disability}>{disability}</option>
+//           ))}
+//         </select>
+//       </div>
+//       <div className="col-12 col-lg-4 col-xl-2">
+//       <label htmlFor="levels" className= "fl-label">Level</label>
+//         <select name="levels-of-study" id="levels" onChange={handleSelect}>
+//           {levels.map((level, i) => (
+//             <option key={i} value={level}>{level}</option>
+//           ))}
+//         </select>
+//       </div>
+//       <div className="col-12 col-lg-4 col-xl-2">
+//       <label htmlFor="genders" id="gendersL" className= "fl-label">Gender</label>
+//         <select name="genders" id="genders" onChange={handleSelect}>
+//           {genders.map((gender, i) => (
+//             <option key={i} value={gender}>{gender}</option>
+//           ))}
+//         </select>
+//       </div>
+//       <div className="col-12 col-lg-4 col-xl-2">
+//       <label htmlFor="types" className= "fl-label">Funding</label>
+//         <select name="types" id="types" onChange={handleSelect}>
+//           {types.map((type, i) => (
+//             <option key={i} value={type}>{type}</option>
+//           ))}
+//         </select>
+//       </div>
+//     </div>
+//   </div>
+
+//   <div className="col-12 col-lg-3 col-xl-2">
+//     <div className="row">
+//         <div className="col-6">
+//           <button type="button" className="btn btn-primary" id="sbmtBtnS" onClick={handleSubmit}>Submit</button>
+//         </div>
+//         <div className="col-6">
+//           <button type="submit" className="btn btn-primary" id= "clrBtnS" onClick={clear}>Clear</button>
+//         </div>
+//       </div>
+//     </div>
+// </div>
+
+// </div>

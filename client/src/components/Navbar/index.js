@@ -41,7 +41,7 @@ const Navibar = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu menuVariant="light" align="end">
-                      <Dropdown.Item href="#action/3.2">Theme</Dropdown.Item>
+                      {/* <Dropdown.Item href="#action/3.2">Theme</Dropdown.Item> */}
                       <Dropdown.Item onClick={logout} to="/">Log out</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

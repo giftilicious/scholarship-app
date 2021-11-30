@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import "../assets/css/style.css"
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Button from 'react-bootstrap/Button';
+import "../assets/css/style.css";
 import Auth from '../utils/auth';
 
 const Login = (props) => {
@@ -42,7 +45,7 @@ const Login = (props) => {
 
   return (
     <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10" style={{width:"50%",display:"flex",alignItems:"center", justifyContent:"center"}}>
+      <div className="col-12 col-lg-10">
         <div className="card" >
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">
@@ -52,32 +55,29 @@ const Login = (props) => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                  onClick={handleFormSubmit}
-                >
-                  Submit
-                </button>
-              </form>
+              <Form.Floating onSubmit={handleFormSubmit}>
+                <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+                  <Form.Control 
+                    className="form-input"
+                    placeholder="Your email"
+                    name="email"
+                    type="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                </FloatingLabel>
+                <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
+                  <Form.Control
+                    className="form-input"
+                    placeholder="******"
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                </FloatingLabel>
+                <Button type="submit" onClick={handleFormSubmit}>Submit</Button>
+              </Form.Floating>
             )}
 
             {error && (

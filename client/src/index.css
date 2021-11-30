@@ -1048,16 +1048,6 @@ a:hover {
   background-color: #95a8b3;
 }
 
-.filters {
-  background-color: #b8cfdb;
-  color: #1a1a1a;
-}
-
-.filters:hover {
-  background-color: #95a8b3;
-}
-
-
 .btn.btn-dark {
   background-color: #1a1a1a;
   color: #d9e9e8;
@@ -1344,9 +1334,6 @@ label form [type='radio'] {
 .col-12 {
   flex: 0 0 100%;
   max-width: 100%;
-}
-.fl-label{
-  margin-right:0.5rem !important;
 }
 
 /* col-sm */
@@ -1722,11 +1709,5 @@ label form [type='radio'] {
   }
   .align-content-center-xl {
     align-content: center;
-  }
-  #disabilities{
-    margin-left:2rem;  
-  }
-  #disabilitiesL{
-    margin-left:2rem;
   }
 }

@@ -65,7 +65,7 @@ function App() {
             <div class="container-fluid">
               <Route exact path="/">
                 {Auth.loggedIn() ? (
-                  <span>Welcome back, {capitalize(Auth.getUser().data.username)}!</span>
+                  <h1 className="mb-4">Welcome back, {capitalize(Auth.getUser().data.username)}!</h1>
                 ) : (
                   <>
                   </>
