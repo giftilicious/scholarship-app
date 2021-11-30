@@ -99,7 +99,7 @@ const SearchResults = () => {
        let found=false;
        if (element.ethnicity.length===0){
          return true;
-       } else if (element.ethnicity.length===1 && element.ethnicity[0].length===1){
+       } else if (element.ethnicity.length===1 && element.ethnicity[0].length===0){
         return true;
       }
       element.ethnicity.forEach((eth) =>{
@@ -117,7 +117,7 @@ const SearchResults = () => {
       let found=false;
       if (element.disability.length===0){
         return true;
-      } else if (element.disability.length===1 && element.disability[0].length===1){
+      } else if (element.disability.length===1 && element.disability[0].length===0){
         return true;
       }
      element.disability.forEach((dis) =>{
@@ -135,7 +135,7 @@ const SearchResults = () => {
       let found=false;
       if (element.gender.length===0){
         return true;
-      } else if (element.gender.length===1 && element.gender[0].length===1){
+      } else if (element.gender.length===1 && element.gender[0].length===0){
         return true;
       }
      element.gender.forEach((gen) =>{
@@ -153,7 +153,7 @@ const SearchResults = () => {
       let found=false;
       if (element.levelofstudy.length===0){
         return true;
-      } else if (element.levelofstudy.length===1 && element.levelofstudy[0].length===1){
+      } else if (element.levelofstudy.length===1 && element.levelofstudy[0].length===0){
         return true;
       }
      element.levelofstudy.forEach((lev) =>{
