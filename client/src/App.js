@@ -43,6 +43,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+function capitalize(name){
+  const Name = name.charAt(0).toUpperCase() + name.slice(1);
+  return Name
+}
+
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -60,7 +65,7 @@ function App() {
             <div class="container-fluid">
               <Route exact path="/">
                 {Auth.loggedIn() ? (
-                  <span>Welcome back, {Auth.getUser().data.username}!</span>
+                  <span>Welcome back, {capitalize(Auth.getUser().data.username)}!</span>
                 ) : (
                   <>
                   </>
