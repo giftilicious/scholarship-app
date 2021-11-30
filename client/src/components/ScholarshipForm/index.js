@@ -255,7 +255,7 @@ const ScholarshipForm = () => {
               <option selected>Select Type...</option>
               <option value="Scholarship">Scholarship</option>
               <option value="Bursary">Bursary</option>
-              <option value="Award">Bursary</option>
+              <option value="Award">Award</option>
             </Form.Select>
           </FloatingLabel>
           <div>
