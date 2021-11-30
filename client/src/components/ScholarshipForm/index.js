@@ -129,7 +129,7 @@ const ScholarshipForm = () => {
 
 
     try {
-      
+
       const varObj = {
         username: Auth.getUser().data.username, title: title, type: type, description: description, deadline: deadline, amount: amount, ethnicity: ethnicity, disability: disability,
         levelofstudy: levelofstudy,
@@ -159,48 +159,48 @@ const ScholarshipForm = () => {
     setOptionSelectedEthnicity(selected);
 
     const ethnicities = [];
-      if (selected && selected.length > 0) {
-        selected.forEach(element => {
-          ethnicities.push(element.value);
-        });
-      }
-      setEthnicity(ethnicities);
+    if (selected && selected.length > 0) {
+      selected.forEach(element => {
+        ethnicities.push(element.value);
+      });
+    }
+    setEthnicity(ethnicities);
   };
 
   const handleSelectGender = selected => {
     setOptionSelectedGender(selected);
 
     const genders = [];
-      if (selected && selected.length > 0) {
-        selected.forEach(element => {
-          genders.push(element.value);
-        });
-      }
-      setGender(genders);
+    if (selected && selected.length > 0) {
+      selected.forEach(element => {
+        genders.push(element.value);
+      });
+    }
+    setGender(genders);
   };
 
   const handleSelectDisability = selected => {
     setOptionSelectedDisability(selected);
 
     const disabilities = [];
-      if (selected && selected.length > 0) {
-        selected.forEach(element => {
-          disabilities.push(element.value);
-        });
-      }
-      setDisability(disabilities);
+    if (selected && selected.length > 0) {
+      selected.forEach(element => {
+        disabilities.push(element.value);
+      });
+    }
+    setDisability(disabilities);
   };
 
   const handleSelectLevelofstudy = selected => {
     setOptionSelectedLevelofstudy(selected);
 
     const levels = [];
-      if (selected && selected.length > 0) {
-        selected.forEach(element => {
-          levels.push(element.value);
-        });
-      }
-      setLevelofstudy(levels);
+    if (selected && selected.length > 0) {
+      selected.forEach(element => {
+        levels.push(element.value);
+      });
+    }
+    setLevelofstudy(levels);
   };
 
   const handleChange = (event) => {
@@ -229,97 +229,42 @@ const ScholarshipForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <label for="title" className="col-3 col-lg-3">Title</label>
+          <form className="styled-form row" onSubmit={handleFormSubmit}>           
+            <div>
+            <div className="col-12">
+              <label for="title" className="col-12">Title</label>
               <input type="text"
                 value={title}
-                className="col-9 col-lg-6"
+                className="col-12"
                 id="title"
                 name="title"
                 onChange={handleChange}
-                placeholder="The title of your scholarship..." />
-              <label for="description" className="col-3 col-lg-3">Description</label>
+                // placeholder="The title of your scholarship..." 
+                />
+            </div>
+              <div>
+              <label for="description" className="col-12">Description</label>
               <textarea
                 name="description"
                 placeholder="Description of the scholarship"
                 value={description}
-                className="form-input w-100 col-9 col-lg-6"
+                className="form-input w-100 col-12"
                 onChange={handleChange}
                 style={{ lineHeight: '1.5', resize: 'vertical' }
                 }
               ></textarea>
-
+              </div>
+            </div>        
+            <div className="form-field col-lg-12 col-lg-9">
               <Dropdown
-                formLabel="Type of Scholarship"
-                onChange={handleTypeSelect}
-              >
-                <Option selected value="Click to see options" />
+                onChange={handleTypeSelect} >
+                <Option selected value="Type of Award" />
                 <Option value="Scholarship" />
                 <Option value="Bursary" />
-                <Option value="Award" />
               </Dropdown>
-              <div>
-                <label for="amount" className="col-3 col-lg-3">Amount</label>
-                <input type="text"
-                  value={amount}
-                  className="col-9 col-lg-6"
-                  id="amount"
-                  name="amount"
-                  onChange={handleChange}
-                  placeholder="The grant amount..." />
-              </div>
-              <div>
-                <label className="col-3 col-lg-3">Ethnicity</label>
-
-                <MySelect
-                  className="col-9 col-lg-6"
-                  options={ethnicityOptions}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  components={{ OptionEthnicity, MultiValueEthnicity, animatedComponentsEthnicity }}
-                  onChange={handleSelectEthnicity}
-                  allowSelectAll={true}
-                  value={optionSelectedEthnicity}
-                />
-              </div>
-              <div>
-                <label className="col-3 col-lg-3">Gender</label>
-
-                <MySelect
-                  className="col-9 col-lg-6"
-                  options={genderOptions}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  components={{ OptionGender, MultiValueGender, animatedComponentsGender }}
-                  onChange={handleSelectGender}
-                  allowSelectAll={true}
-                  value={optionSelectedGender}
-                />
-              </div>
-              <div>
-                <label className="col-3 col-lg-3">Disability</label>
-
-                <MySelect
-                  className="col-9 col-lg-6"
-                  options={disabilityOptions}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  components={{ OptionDisability, MultiValueDisability, animatedComponentsDisability }}
-                  onChange={handleSelectDisability}
-                  allowSelectAll={true}
-                  value={optionSelectedDisability}
-                />
-              </div>
-              <div>
-                <label className="col-3 col-lg-3">Level of Study</label>
-
+            </div>                                     
+            <div>
+                <label className="col-3 col-lg-3">Level of study</label>
                 <MySelect
                   className="col-9 col-lg-6"
                   options={levelofstudyOptions}
@@ -329,20 +274,68 @@ const ScholarshipForm = () => {
                   components={{ OptionLevelofstudy, MultiValueLevelofstudy, animatedComponentsLevelofstudy }}
                   onChange={handleSelectLevelofstudy}
                   allowSelectAll={true}
-                  value={optionSelectedLevelofstudy}
-                />
+                  value={optionSelectedLevelofstudy} />
               </div>
-              <label for="deadline" className="col-3 col-lg-3">Deadline</label>
+            <div>
+              <label className="col-3 col-lg-3">Ethnicity</label>
+              <MySelect
+                className="col-9 col-lg-6"
+                options={ethnicityOptions}
+                isMulti
+                closeMenuOnSelect={false}
+                hideSelectedOptions={false}
+                components={{ OptionEthnicity, MultiValueEthnicity, animatedComponentsEthnicity }}
+                onChange={handleSelectEthnicity}
+                allowSelectAll={true}
+                value={optionSelectedEthnicity} />
+            </div>
+            <div>
+              <label className="col-3 col-lg-3">Gender</label>
+              <MySelect
+                className="col-9 col-lg-6"
+                options={genderOptions}
+                isMulti
+                closeMenuOnSelect={false}
+                hideSelectedOptions={false}
+                components={{ OptionGender, MultiValueGender, animatedComponentsGender }}
+                onChange={handleSelectGender}
+                allowSelectAll={true}
+                value={optionSelectedGender} />
+            </div>
+            <div>
+                <label className="col-3 col-lg-3">Disability</label>
+                <MySelect
+                  className="col-9 col-lg-6"
+                  options={disabilityOptions}
+                  isMulti
+                  closeMenuOnSelect={false}
+                  hideSelectedOptions={false}
+                  components={{ OptionDisability, MultiValueDisability, animatedComponentsDisability }}
+                  onChange={handleSelectDisability}
+                  allowSelectAll={true}
+                  value={optionSelectedDisability} />
+              </div>      
+            <div className="form-field col-lg-12 col-lg-9">
+                <label for="amount" className="col-3 col-lg-3">Amount:</label>
+                <input type="text"
+                  value={amount}
+                  className="col-9 col-lg-6"
+                  id="amount"
+                  name="amount"
+                  onChange={handleChange}
+                  placeholder="The grant amount..." />
+              </div>            
+            <div>
+              <label for="deadline" className="col-3 col-lg-3">Deadline:</label>
               <input type="date"
                 value={deadline}
                 className="col-9 col-lg-6"
                 id="deadline"
                 name="deadline"
                 onChange={handleChange} />
-
             </div>
-
-            <label for="applink" className="col-3 col-lg-3">Application Link</label>
+            <div>
+            <label for="applink" className="col-3 col-lg-3">Award URL:</label>
               <input type="applink"
                 value={applink}
                 className="col-9 col-lg-6"
@@ -350,7 +343,9 @@ const ScholarshipForm = () => {
                 name="applink"
                 onChange={handleChange}
                 placeholder="Link to apply..." />
-                <label for="applink" className="col-3 col-lg-3">Application e-mail</label>
+            </div>
+            <div>
+            <label for="applink" className="col-3 col-lg-3">Contact Email:</label>
               <input type="appemail"
                 value={appemail}
                 className="col-9 col-lg-6"
@@ -358,18 +353,17 @@ const ScholarshipForm = () => {
                 name="appemail"
                 onChange={handleChange}
                 placeholder="Email address to apply..." />
-              
-
-            <div className="col-12 col-lg-9">
+            </div>           
+            <div className="container flex-col justify-center pt-5 col-12 col-lg-9">
               <button className="btn btn-primary btn-block py-3" onClick={handleFormSubmit} type="submit">
-                Add Scholarship
+                ADD AWARD
               </button>
             </div>
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share add an award. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -378,3 +372,4 @@ const ScholarshipForm = () => {
 };
 
 export default ScholarshipForm;
+
