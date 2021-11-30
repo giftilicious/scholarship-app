@@ -89,7 +89,8 @@ const ScholarshipCard = ({ scholarship }) => {
             aria-expanded={show} 
             aria-controls="hide"
             >
-            Show more
+            {show ? (<span>Show less</span>): (<span>Show more</span>)}
+            
             </Button>
           </div>
         </div>
