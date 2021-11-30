@@ -127,7 +127,9 @@ const SearchResults = () => {
 // returns true if one of the genders matches the gender filter
 // nested callback function inside anonymous function to be able to pass in two arguments in the array.filter() method
    function isGender (selection){
+     console.log(selection)
     return function (element){
+      console.log(element)
       let found=false;
       if (element.gender.length===0){
         return true;
