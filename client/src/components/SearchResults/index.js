@@ -130,7 +130,7 @@ const SearchResults = () => {
      console.log(selection)
     return function (element){
       console.log(element)
-      console.log(element.gender.length)
+      console.log(element.gender[0].length)
       let found=false;
       if (element.gender.length===0){
         return true;
