@@ -26,8 +26,6 @@ const ScholarshipCard = ({ scholarship }) => {
   const [dropScholarship, { error2 }] = useMutation(DROP_SCHOLARSHIP)
   
   const handlePickScholarship = async (e) => {
-    console.log(scholarship);
-    console.log(Auth.getUser().data.username);
 
     if (starIcon==='far fa-star fa-lg	favourite-icon'){
       setStarIcon('fas fa-star fa-lg	favourite-icon')
@@ -77,6 +75,7 @@ const ScholarshipCard = ({ scholarship }) => {
           <p className="card-text"><div className="fw-bold">Ethinicity:</div> {scholarship.ethnicity}</p>
           <p className="card-text"><div className="fw-bold">Disability:</div> {scholarship.disability}</p>
           <p className="card-text"><div className="fw-bold">Level of Study:</div> {scholarship.levelofstudy}</p>
+
           <Collapse in={show}>
           <div id="hide">
             <p className="card-text">Application deadline: {scholarship.deadline}</p>

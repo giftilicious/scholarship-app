@@ -208,7 +208,6 @@ const ScholarshipForm = () => {
   };
 
   const handleChange = (event) => {
-    console.log(Auth.getUser().data)
     const { name, value } = event.target;
 
     if (name === 'description' && value.length <= 280) {
@@ -360,7 +359,7 @@ const ScholarshipForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share add an award. Please{' '}
+          You need to be logged in to share add a scholarship. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
