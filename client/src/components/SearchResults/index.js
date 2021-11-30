@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
 import Container from 'react-bootstrap/Container'
@@ -29,8 +29,7 @@ const SearchResults = () => {
       level: level,
       type: type
   };
-  // console.log('Initital selection     ', selection)
-
+  
   // Handler for all states
   const handleSelect = (e) => {
     const selected = e.target.value;
@@ -65,15 +64,24 @@ const SearchResults = () => {
 
   // Query for all available scholarships. Returns [Scholarship].
   const { loading, data } = useQuery(QUERY_SCHOLARSHIPS);
-  const scholarships = data?.allScholarships || [];
-
-  console.log('All scholarships', scholarships);
+  
+  const [filteredSc, setFilteredSc] = useState([]);
  
-  const [pScholarships, setpScholarships] = useState(scholarships);
+  const [pScholarships, setpScholarships] = useState([]);
+  
+  useEffect(()=> {
+    if(!loading){
+      setpScholarships([...data.allScholarships]);
+      setFilteredSc([...data.allScholarships]);     
+    }
+  }, [loading, data])
+  
   
   // console.log('pScholarships instantiation',pScholarships);
   
   const handleSubmit = () =>{
+
+    let scholarships = [...pScholarships];
     //Arrays to hold successive filtered data
     let byEthnicity = [];
     let byDisability = [];
@@ -155,8 +163,7 @@ const SearchResults = () => {
       let found=false;     
        if(element.type === selection.type){
         found = true;
-       }   
-     
+       }     
      return found;
    }
    };
@@ -170,33 +177,33 @@ const SearchResults = () => {
     if (selection.ethnicity !== ''){
       byEthnicity = scholarships.filter(isEthnicity(selection));
     }else{
-      byEthnicity = scholarships;
+      byEthnicity =[...scholarships];
     }
     // Second Filter: Disability
     if (selection.disability !== ''){
       byDisability = byEthnicity.filter(isDisability(selection));
     }else{
-      byDisability = byEthnicity;
+      byDisability = [...byEthnicity];
     }
     // Third
     if (selection.gender !== ''){
       byGender = byDisability.filter(isGender(selection));
     }else{
-      byGender = byDisability;
+      byGender = [...byDisability];
     }
     // Fourth
     if (selection.level !== ''){
       byLevel = byGender.filter(isLevel(selection));
     }else{
-      byLevel = byGender;
+      byLevel = [...byGender];
     }
     // Final Filter: Type
     if (selection.type !== ''){
       final = byLevel.filter(isOfType(selection));
     }else{
-      final = byLevel;
+      final = [...byLevel];
     }
-    setpScholarships(final);
+    setFilteredSc([...final]);
 
   }
 
@@ -233,46 +240,46 @@ const SearchResults = () => {
               <div className="row">
                 {/* ethnicities */}
                 <div className="col-12 col-lg-4 col-xl-1">
-                  <label for="ethnicities" id="ethnicitiesL" className= "fl-label">Ethnicity</label>
+                  <label htmlFor="ethnicities" id="ethnicitiesL" className= "fl-label">Ethnicity</label>
                   <select className="filters" name="ethnicities" id="ethnicities" onChange={handleSelect} >
-                    {ethnicities.map((ethnicity) => (
-                      <option value={ethnicity}>{ethnicity}</option>
+                    {ethnicities.map((ethnicity, i) => (
+                      <option key={i} value={ethnicity}>{ethnicity}</option>
                     ))}
                   </select>
                 </div>
                 {/* disabilities */}
                 <div className="col-12 col-lg-4 col-xl-3">
-                <label for="disabilities" className= "fl-label" id= "disabilitiesL">Special Needs</label>
+                <label htmlFor="disabilities" className= "fl-label" id= "disabilitiesL">Special Needs</label>
                   <select className="filters" name="disabilities" id="disabilities" onChange={handleSelect}>
-                    {disabilities.map((disability) => (
-                      <option value={disability}>{disability}</option>
+                    {disabilities.map((disability, i) => (
+                      <option key={i} value={disability}>{disability}</option>
                     ))}
                   </select>
                 </div>
                 {/* levels of study */}
                 <div className="col-12 col-lg-4 col-xl-2">
-                <label for="levels" className= "fl-label">Level</label>
+                <label htmlFor="levels" className= "fl-label">Level</label>
                   <select className="filters" name="levels-of-study" id="levels" onChange={handleSelect}>
-                    {levels.map((level) => (
-                      <option value={level}>{level}</option>
+                    {levels.map((level, i) => (
+                      <option key={i} value={level}>{level}</option>
                     ))}
                   </select>
                 </div>
                 {/* genders */}
                 <div className="col-12 col-lg-4 col-xl-2">
-                <label for="genders" id="gendersL" className= "fl-label">Gender</label>
+                <label htmlFor="genders" id="gendersL" className= "fl-label">Gender</label>
                   <select className="filters" name="genders" id="genders" onChange={handleSelect}>
-                    {genders.map((gender) => (
-                      <option value={gender}>{gender}</option>
+                    {genders.map((gender, i) => (
+                      <option key={i} value={gender}>{gender}</option>
                     ))}
                   </select>
                 </div>
                 {/* types of funding */}
                 <div className="col-12 col-lg-4 col-xl-2">
-                <label for="types" className= "fl-label">Funding</label>
+                <label htmlFor="types" className= "fl-label">Funding</label>
                   <select className="filters" name="types" id="types" onChange={handleSelect}>
-                    {types.map((type) => (
-                      <option value={type}>{type}</option>
+                    {types.map((type, i) => (
+                      <option key={i} value={type}>{type}</option>
                     ))}
                   </select>
                 </div>
@@ -293,13 +300,19 @@ const SearchResults = () => {
         </div>
       </form>
       {/* render results of (filtered) search */}
-      <Row xs={1} md={2} lg={4}>
-        {pScholarships.map((scholarship) => (
-          <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
-        ))}
-      </Row>
+
+    <Row xs={1} md={2} lg={4}>
+
+        {/* {console.log(pScholarships)} */}
+        {filteredSc.length > 0 && filteredSc.map((scholarship) => {
+
+          // console.log('working')
+           console.log(scholarship._id);
+         return <ScholarshipCard key={scholarship._id} scholarship={scholarship} />       
+        })}
+       </Row>
     </Container>
-  )
+   )
 }
 
 export default SearchResults;
