@@ -1,4 +1,4 @@
-## <Dollars4Scholars>
+# Dollars4Scholars
 
 ## Table of Contents
 
@@ -33,30 +33,24 @@ No installation is needed. This application is run in a live webpage.
 
 ## Usage
 
-To use this application, go to the deployed webpage by followig this link: [Visit the deployed page](https://sscholarship-app.herokuapp.com/)
+To use this application, go to the deployed webpage by followig this link: [Visit the deployed page](https://aqueous-ocean-45024.herokuapp.com/)
 
-![Image of the Landing Page](./public/images/Index-Screenshot.PNG "Landing Page")
+![Image of the Landing Page](./client/src/assets/images/homepage.PNG "Landing Page")
 
-Once in the landing page, go to the upper right corner and click on the user button to either sign up or login.
+Once on the landing page, go to the upper right corner and click on the user button to either sign up or login.
 
-![Image of a Sign up form asking for username, email and password](./public/images/Signup-Screenshot.PNG "Sign up form")
-![Image of a login form asking for username and password](./public/images/Login-Screenshot.PNG "Login form")
+![Image of a Sign up form asking for username, email and password](./client/src/assets/images/signup.PNG)
+![Image of a login form asking for username and password](./client/src/assets/images/login.PNG)
 
-After login, click on IN or OUT at the center of the page. This will take you to a set of either indoor or outdoor activities.
+After logging on as a "student", the home screen will present available scholarships. At the top of the page, there are filters to assist the student in searching for a scholarship. Once a student likes a scholarship, it will be saved in their "Collections" folder.
 
-![Image of a series of categories to filter results from](./public/images/Activities-filters-Screenshot.PNG "Choose your preferences")
+![Image of a series of scholarships available](./client/src/assets/images/homeSignedIn.PNG)
 
+![Image of liked scholarships by the student](./client/src/assets/images/collection.PNG)
 
-Once in the activites page, you can scroll down to see the full list of indoor or outdoor activites (depending on what you selected before) or you can click on the preferences buttons to filter the activities by category.
+After logging on as a "provider", a user can add a scholarship to the database by filling out a form.
 
-![Image of a series of cards with information about activities nearby](./public/images/Activities-list-Screenshot.PNG "Choose from the list of activites")
-
-
-If you click on one of the preferences buttons, the list of activities will be narrowed down by your preference.
-
-If you want to know more about a specific activity and join the conversation, click on one of the activity cards and it will take you to a focused info page, where you will be able to view more details and, if logged in, view and write comments regarding that activity.
-
-![Image of a single card with more details about a single activity and with a list of comments from other users](./public/images/Activity-info-Screenshot.PNG "Find out more about the activity")
+![Image of the provider scholarship form](./client/src/assets/images/providerScholarship.PNG)
 
 ## Credits
 
@@ -69,9 +63,9 @@ Collaborators:
 
 Third-party assets:
 - [Bootstrap](https://getbootstrap.com/)
-
+- [REACT](https://reactjs.org/)
 - [JQuery](https://jquery.com/)
-
+- [Mongoose](https://mongoosejs.com/)
 - [fontawesome](https://fontawesome.com/)
 - [npm](https://www.npmjs.com/)
 - [bcrypt-npm](https://www.npmjs.com/package/bcrypt)
@@ -107,6 +101,21 @@ FrontEnd:
 - Google Fonts and Fontawesome fonts and icons
 - HTML/Handlebars
 - CSS and Flexbox
+- Dependencies:
+  - @apollo/client 3.3.5
+  - @testing-library/jest-dom 5.11.4
+  - @testing-library/react 11.1.0
+  - @testing-library/user-event 12.1.10
+  - graphql 15.4.0
+  - jwt-decode 3.1.2
+  - react 17.0.1
+  - react-bootstrap 2.0.2
+  - react-dom 17.0.1
+  - react-router-dom 5.2.0
+  - react-scripts 4.0.1
+  - react-select 5.2.1
+  - styled-components 5.3.3
+  - web-vitals 0.2.4
 
 BackEnd:
 - Heroku
@@ -115,16 +124,6 @@ BackEnd:
 - Model View Controller framework
 - Node.js
 - File System
-- Dependencies:
-  - bcrypt 5.01
-  - Sequelize 7.1.2
-  - dotenv 10.0.0
-  - Express 4.17.1
-  - Express Handlebars 5.3.4
-  - Express Session 1.17.2
-  - mysql2 2.3.2
-  - sequelize 6.8.0
-  - Validator-js 0.2.1
   
 
 ## Tests
