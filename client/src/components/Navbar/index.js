@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 
 const Navibar = () => {
 
@@ -18,7 +19,8 @@ const Navibar = () => {
       <>
       <Navbar variant="dark" bg="dark" expand="sm" sticky="top">
 		 		<Container fluid>
-         <Navbar.Brand>Logo</Navbar.Brand>
+         <Navbar.Brand><Image src="./images/logo1.png" width={50} roundedCircle /></Navbar.Brand>
+         
           <Navbar.Toggle aria-controls="navbar-dark-example" />
             <Navbar.Collapse id="navbar-dark-example" className="">
               {Auth.loggedIn() ? (

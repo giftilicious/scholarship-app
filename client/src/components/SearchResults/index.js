@@ -293,8 +293,9 @@ const SearchResults = () => {
           </Col>
         </Row>
 
-        <Button variant="primary" type="button" id="sbmtBtnS" onClick={handleSubmit}>Submit</Button>
-        <Button variant="primary" type="submit" id="clrBtnS" onClick={clear}>Clear</Button>
+        <Button variant="primary" className="mr-3" type="button" id="sbmtBtnS" onClick={handleSubmit}>Submit</Button>
+        <Button variant="primary" className="mr-3" type="submit" id="clrBtnS" onClick={clear}>Clear</Button>
+
       </Form.Floating>
 
       <Row xs={1} md={2} lg={4}>
