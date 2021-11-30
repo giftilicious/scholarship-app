@@ -7,6 +7,9 @@ import '../../assets/css/style.css';
 const styles = {
   btnBorder: {
     border: '1px outset #519DD9',
+    "&:hover": {
+      textDecoration: 'none',
+    }
   }
 }
 
@@ -47,9 +50,9 @@ const ScholarshipCard = ({ scholarship }) => {
   };
 
   return (
-    <div className="col" key={scholarship._id}>
+    <div className="col mt-2 mb-2" key={scholarship._id}>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-      <div className="card shadow-sm">
+      <div className="card h-100 shadow-sm">
       {(Auth.loggedIn() && Auth.getUser().data.usertype==='Student') ? (
           <div className="card-img-top">
             <div className="d-flex justify-content-end p-4">
@@ -75,9 +78,6 @@ const ScholarshipCard = ({ scholarship }) => {
         {Auth.loggedIn() ? (
           <div className="card-footer">
             <div className="d-flex align-items-center">
-                {/* <button type="button" className="btn btn-sm btn-outline-fill" onClick={handlePickScholarship}>Pick</button>
-                <button type="button" className="btn btn-sm btn-outline-fill">E-mail</button>
-                <button type="button" className="btn btn-sm btn-outline-fill">Apply</button> */}
                 {Auth.getUser().data.usertype==='Provider' ? ( 
                   <div className="btn-group w-100">
                     {(scholarship.applink && scholarship.applink.length>0) ? (

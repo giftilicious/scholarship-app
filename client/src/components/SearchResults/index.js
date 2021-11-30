@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ScholarshipCard from '../ScholarshipCard';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import { QUERY_SCHOLARSHIPS } from '../../utils/queries';
 
 const SearchResults = () => {
@@ -221,7 +223,7 @@ const SearchResults = () => {
   }
   // loaded
   return (
-    <div>
+    <Container fluid>
       {/* Form to render the filters */}
       <form action="">
         <div className= "container">
@@ -291,17 +293,12 @@ const SearchResults = () => {
         </div>
       </form>
       {/* render results of (filtered) search */}
-      <div className="row">
-        {/* {console.log(pScholarships)} */}
+      <Row xs={1} md={2} lg={4}>
         {pScholarships.map((scholarship) => (
-          // console.log('working')
-           
           <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
-          
-
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   )
 }
 
