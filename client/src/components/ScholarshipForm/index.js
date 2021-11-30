@@ -204,7 +204,6 @@ const ScholarshipForm = () => {
   };
 
   const handleChange = (event) => {
-    console.log(Auth.getUser().data)
     const { name, value } = event.target;
 
     if (name === 'description' && value.length <= 280) {
@@ -258,9 +257,10 @@ const ScholarshipForm = () => {
             <div className="form-field col-lg-12 col-lg-9">
               <Dropdown
                 onChange={handleTypeSelect} >
-                <Option selected value="Type of Award" />
+                <Option selected value="Type" />
                 <Option value="Scholarship" />
                 <Option value="Bursary" />
+                <Option value="Award" />
               </Dropdown>
             </div>                                     
             <div>
@@ -335,7 +335,7 @@ const ScholarshipForm = () => {
                 onChange={handleChange} />
             </div>
             <div>
-            <label for="applink" className="col-3 col-lg-3">Award URL:</label>
+            <label for="applink" className="col-3 col-lg-3">Webpage:</label>
               <input type="applink"
                 value={applink}
                 className="col-9 col-lg-6"
@@ -356,14 +356,14 @@ const ScholarshipForm = () => {
             </div>           
             <div className="container flex-col justify-center pt-5 col-12 col-lg-9">
               <button className="btn btn-primary btn-block py-3" onClick={handleFormSubmit} type="submit">
-                ADD AWARD
+                ADD SCHOLARSHIP
               </button>
             </div>
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to share add an award. Please{' '}
+          You need to be logged in to share add a scholarship. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

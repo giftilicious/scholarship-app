@@ -10,32 +10,31 @@ import Auth from '../utils/auth';
 
 const Library = () => {
 
-  const {loading, data} = useQuery(QUERY_USER
-    ,{
-    variables: { username: Auth.getUser().data.username },
-  }
+  const { loading, data } = useQuery(QUERY_USER
+    , {
+      variables: { username: Auth.getUser().data.username },
+    }
   );
 
   // 'library' will pass through the return statement below when authenticating user
   const library = data?.user || {}
 
-  console.log(library)
-
   const [deleteScholarship, { error }] = useMutation(DELETE_SCHOLARSHIP)
 
   // This function will handle the click event to delete the scholarship from the library
   const handleDeleteScholarship = async (scholarshipId) => {
-    
+
     try {
-      const {data} = await deleteScholarship({
-        variables: {username:Auth.getUser().data.username,scholarshipId}
+      const { data } = await deleteScholarship({
+        variables: { username: Auth.getUser().data.username, scholarshipId }
       })
     } catch (err) {
       console.error(err);
     }
+    window.location.assign('/library');
   };
 
-  if(loading){
+  if (loading) {
     return (
       <div>
         <h1>Loading ...</h1>
@@ -43,12 +42,12 @@ const Library = () => {
     )
   }
 
-  if (library.definedScholarships===undefined || library.definedScholarships.length===0){
+  if (library.definedScholarships === undefined || library.definedScholarships.length === 0) {
     return (
       <div>
         <h2>
           You have no defined scholarships.
-      </h2>
+        </h2>
       </div>
     );
   }
@@ -83,7 +82,7 @@ const Library = () => {
         </Container>
       </Container>
     </>
-  );  
+  );
 };
 
 export default Library;

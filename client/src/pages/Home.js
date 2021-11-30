@@ -13,7 +13,6 @@ const Home = () => {
   
   const pScholarships = [];
   scholarships.forEach(element => {
-    console.log(element);
 
       const newScholarship = {title:element.title, 
         type: element.type,
