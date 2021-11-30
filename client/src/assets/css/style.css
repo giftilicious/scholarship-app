@@ -22,15 +22,19 @@ header {
   max-width: 100%;
 }
 
-.scrolled {
-  position: fixed;
-  top: 0;
-  left: 0;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+	background-color: var(--bg-color);
 }
 
-body {
-	background-color: var(--bg-color);
+#root {
   min-height: 100vh
+}
+
+main {
+  min-height: calc(100vh - 128px)
 }
 
 h1, h2, h3, h4, h5, h6 {
