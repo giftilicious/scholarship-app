@@ -71,12 +71,12 @@ const ScholarshipCard = ({ scholarship }) => {
         
         <div className="card-body">
           <h5 className="card-title">{scholarship.title}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">${scholarship.amount}</h6>
-          <h6 className="card-subtitle mb-2 text-muted">Eligibility</h6>
-          <p className="card-text">Gender: {scholarship.gender}</p>
-          <p className="card-text">Ethinicity: {scholarship.ethnicity}</p>
-          <p className="card-text">Disability: {scholarship.disability}</p>
-          <p className="card-text">Level of Study: {scholarship.levelofstudy}</p>
+          <h4 className="card-subtitle mb-2 fw-bold">${scholarship.amount}</h4>
+          <h5 className="card-subtitle mb-2 text-muted">Eligibility</h5>
+          <p className="card-text"><div className="fw-bold">Gender:</div> {scholarship.gender}</p>
+          <p className="card-text"><div className="fw-bold">Ethinicity:</div> {scholarship.ethnicity}</p>
+          <p className="card-text"><div className="fw-bold">Disability:</div> {scholarship.disability}</p>
+          <p className="card-text"><div className="fw-bold">Level of Study:</div> {scholarship.levelofstudy}</p>
           <Collapse in={show}>
           <div id="hide">
             <p className="card-text">Application deadline: {scholarship.deadline}</p>

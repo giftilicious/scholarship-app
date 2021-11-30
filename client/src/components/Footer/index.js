@@ -6,7 +6,7 @@ const Footer = () => {
   const location = useLocation();
   const history = useHistory();
   return (
-  <footer class="text-muted py-3">
+  <footer class="py-3">
 		<div class="container">
 			<p class="float-end mb-1">
 				<a href="#">Back to top</a>

@@ -95,21 +95,8 @@ const Home = () => {
   }
   return (
       <div className="row justify-center">
-        <p>Dollars 4 Scholars makes the process of finding money to pay for school easier. We specialize in funding for all communities. Search through our selection of awards for Black students, Indigenous, Asian, LGBTQ+ and so many more.</p>
-        <p>How it works:</p>
-        <ul>
-       <li>
-       Sign up to create your account
-       </li>
-       <li>
-       Find your awards by selecting your desired categories
-       </li>
-       <li>
-       Save the awards you’re interested in to your Collections page (this is where all your funding details will be saved)
-       </li>
-        </ul>
           {Auth.loggedIn() ? (
-              <SearchResults/>         
+              <SearchResults/>
           ) : (
               <ScholarshipList
               scholarships={pScholarships}

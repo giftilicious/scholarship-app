@@ -236,8 +236,8 @@ const SearchResults = () => {
   return (
     <Container fluid>
       {/* Form to render the filters */}
-      <Form>
-        <Row>
+      <Form.Floating>
+        <Row sm={6}>
           <Col>
             <FloatingLabel controlId="ethnicities" label="Ethnicity">
               <Form.Select name="ethnicities" id="ethnicities" aria-label="Filter Scholarships by Ethnicity" onChange={handleSelect}>
@@ -287,7 +287,7 @@ const SearchResults = () => {
 
         <Button variant="primary" type="button" id="sbmtBtnS" onClick={handleSubmit}>Submit</Button>
         <Button variant="primary" type="submit" id="clrBtnS" onClick={clear}>Clear</Button>
-      </Form>
+      </Form.Floating>
 
       <Row xs={1} md={2} lg={4}>
         {filteredSc.length > 0 && filteredSc.map((scholarship) => {

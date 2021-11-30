@@ -41,14 +41,6 @@ h1, h2, h3, h4, h5, h6 {
 	color: var(--heading-color)
 }
 
-#loggedout-nav .btn-primary {
-	background-color: var(--primary-color)
-}
-
-#loggedout-nav .btn-secondary {
-	background-color: var(--secondary-color)
-}
-
 .jumbotron {
 	background: var(--jumbotron);
 	background: -webkit-radial-gradient(circle, rgba(106,120,125,.7) 0%, rgba(0,0,0,.7) 100%), url("../images/pattern.jpg");
@@ -106,9 +98,26 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
+.dropdown-menu a {
+  text-decoration: none
+}
+
 .content {
 	padding-top: 2.4rem;
 	padding-bottom: 2.4rem
+}
+
+.content .btn-primary {
+  font-weight: bold;
+  background: rgb(42,175,255);
+  background: linear-gradient(155deg, rgba(42,175,255,1) 0%, rgba(0,54,133,1) 100%);
+  border: 1px solid #519DD9
+}
+
+.content .btn-primary:hover {
+  font-weight: bold;
+  background: rgb(96,195,255);
+  background: linear-gradient(155deg, rgba(96,195,255,1) 0%, rgba(0,70,173,1) 100%);
 }
 
 .btn-container {
@@ -249,10 +258,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer {
+  color: #fff;
 	background-color: var(--footer-color);
 	padding: 25px;
 }
 
+footer a {
+  color: #fff;
+  text-decoration: none
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: none;
+}
 
 
 
